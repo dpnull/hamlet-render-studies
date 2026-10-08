@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hamlet / Isometric town research</title>
+  <style>
+    :root { --paper:#f5f1e9; --ink:#344349; --muted:#718080; --line:#d9d2c6; --road:#70858a; --grass:#839a78; --clay:#bc6e55; --ochre:#c69b45; --blue:#537e98; --berry:#925c63; --glass:#a7c9c0; --dark:#52615f; }
+    * { box-sizing:border-box; } body { margin:0; background:var(--paper); color:var(--ink); font:15px/1.48 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    a { color:inherit; text-decoration-color:#a59073; text-underline-offset:3px; } a:hover { color:#925c63; }
+    main { max-width:1320px; margin:auto; padding:40px 28px 80px; }
+    .kicker { color:#925c63; font-size:11px; letter-spacing:.14em; text-transform:uppercase; font-weight:700; } h1 { margin:7px 0 10px; font:500 clamp(38px,6vw,76px)/.96 Georgia,serif; letter-spacing:-.05em; } .intro { max-width:750px; margin:0; font-size:18px; color:#516160; }
+    .rule { height:1px; background:var(--line); margin:32px 0; } h2 { font:500 28px/1.1 Georgia,serif; letter-spacing:-.03em; margin:0 0 14px; } h3 { margin:0 0 5px; font-size:13px; letter-spacing:.04em; text-transform:uppercase; } .note { color:var(--muted); font-size:13px; }
+    .grid { display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:start; } .panel { background:#fbf9f5; border:1px solid var(--line); border-radius:16px; padding:22px; }
+    .town { min-height:465px; overflow:hidden; background:linear-gradient(145deg,#eee7db,#e5eee3); position:relative; border-radius:10px; } .town svg { width:100%; height:100%; min-height:465px; display:block; }
+    .caption { display:flex; gap:10px; align-items:flex-start; margin-top:14px; color:#596865; font-size:13px; } .dot { width:8px; height:8px; border-radius:100%; margin-top:6px; flex:0 0 auto; background:var(--clay); }
+    .tokens { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; } .token { display:flex; align-items:center; gap:9px; padding:8px; border:1px solid var(--line); border-radius:9px; background:#fffdf9; font-size:12px; } .swatch { width:20px; height:20px; border-radius:6px; border:1px solid rgba(0,0,0,.08); flex:0 0 auto; } .token b { display:block; font-size:12px; } .token span { color:var(--muted); font-size:11px; }
+    .formula { border-left:3px solid var(--ochre); padding:4px 0 4px 12px; margin:20px 0 0; color:#516160; font:16px/1.4 Georgia,serif; }
+    .components { display:grid; grid-template-columns:repeat(6,1fr); gap:10px; } .component { min-height:156px; padding:12px; background:#fffdf9; border:1px solid var(--line); border-radius:12px; } .component svg { display:block; width:100%; height:64px; margin-bottom:7px; } .component p { margin:0; color:#6d7976; font-size:11px; line-height:1.3; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:28px; } ol, ul { margin:0; padding-left:18px; } li { margin:0 0 8px; } .pitfalls li::marker { color:#bc6e55; font-weight:bold; } .rules li::marker { color:#537e98; font-weight:bold; }
+    .sources { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; } .source { display:block; border:1px solid var(--line); border-radius:12px; padding:14px; background:#fffdf9; min-height:120px; text-decoration:none; } .source:hover { border-color:#a59073; transform:translateY(-1px); } .source small { color:#925c63; text-transform:uppercase; letter-spacing:.08em; font-weight:700; } .source b { display:block; margin:6px 0 4px; font-size:14px; } .source span { color:#6d7976; font-size:12px; line-height:1.35; display:block; }
+    .footer { color:var(--muted); font-size:12px; margin-top:28px; } @media(max-width:850px) { main { padding:27px 16px 55px; } .grid,.split { grid-template-columns:1fr; } .components { grid-template-columns:repeat(3,1fr); } .sources { grid-template-columns:1fr; } } @media(max-width:520px) { .components { grid-template-columns:repeat(2,1fr); } .tokens { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <div class="kicker">Hamlet · visual production research · proposed direction</div>
+  <h1>A town made as a small,<br>cared-for object.</h1>
+  <p class="intro">An orthographic architectural diorama: editable geometry, quiet daylight, roads with an actual modular rhythm, and destinations recognisable from shape before a label is read.</p>
+  <div class="rule"></div>
+  <section class="grid">
+    <div class="panel">
+      <h2>Composition study</h2>
+      <div class="town">
+        <svg viewBox="0 0 760 465" role="img" aria-label="Hand-drawn isometric town component study">
+          <defs><filter id="shadow" x="-20%" y="-20%" width="150%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#5c6b66" flood-opacity=".23"/></filter></defs>
+          <path d="M91 252 380 76l289 176-289 177z" fill="#d7c5ab" filter="url(#shadow)"/>
+          <path d="M105 252 380 84l275 168-31 19-244-148-244 148zM153 281l227-138 227 138-29 18-198-120-198 120z" fill="#70858a"/>
+          <path d="M380 84v39l244 148 31-19zM380 143v36l198 120 29-18z" fill="#60777d"/>
+          <path d="M153 281v37l198 120v-37zM182 299v37l198 120v-37z" fill="#8da19e"/>
+          <g stroke="#344349" stroke-opacity=".28" stroke-width="1"><path d="M247 307l31 18M278 287l31 18M309 268l31 18M340 249l31 18M371 230l31 18M402 249l31 18M433 268l31 18M464 287l31 18M495 307l31 18"/></g>
+          <!-- home --> <g transform="translate(201 220)" filter="url(#shadow)"><path d="M0 37 48 9l48 28-48 28z" fill="#e8e0d2"/><path d="M0 37v47l48 28V65z" fill="#d9cfbf"/><path d="M96 37v47l-48 28V65z" fill="#c9bba8"/><path d="M-4 36 48 5l52 31-10 6-42-25-42 25z" fill="#925c63"/><path d="M42 74h13v29H42z" fill="#536f79"/></g>
+          <!-- cafe --> <g transform="translate(333 188)" filter="url(#shadow)"><path d="M0 32 58 0l58 32-58 33z" fill="#e8e0d2"/><path d="M0 32v39l58 33V65z" fill="#d9cfbf"/><path d="M116 32v39l-58 33V65z" fill="#c9bba8"/><path d="M-5 35 58 1l63 34-12 7-51-28-51 28z" fill="#925c63"/><path d="M12 49l46 26v9L12 58z" fill="#f1bc67"/><path d="M25 57l9 5v9l-9-5zm18 10 9 5v9l-9-5z" fill="#fff7e9"/></g>
+          <!-- library --> <g transform="translate(432 126)" filter="url(#shadow)"><path d="M0 70 59 36l59 34-59 35z" fill="#e8e0d2"/><path d="M0 70v56l59 34V105z" fill="#d9cfbf"/><path d="M118 70v56l-59 34v-55z" fill="#c9bba8"/><path d="M-4 69 59 32l63 37-11 7-52-30-52 30z" fill="#c69b45"/><path d="M30 48 59 31l29 17v-15L59 16 30 33z" fill="#d6b563"/><path d="M52 118h15v29H52z" fill="#536f79"/></g>
+          <!-- greenhouse --> <g transform="translate(470 282)" filter="url(#shadow)"><path d="M0 30 48 3l48 27-48 28z" fill="#b9d8d0" opacity=".9"/><path d="M0 30v42l48 28V58z" fill="#9ac1b7" opacity=".82"/><path d="M96 30v42l-48 28V58z" fill="#86afa6" opacity=".82"/><path d="M0 30 48 3l48 27" fill="none" stroke="#577a76" stroke-width="3"/><path d="M20 20v64M48 4v80M76 20v64M0 46l48 28 48-28" fill="none" stroke="#577a76" stroke-width="2"/></g>
+          <!-- post --> <g transform="translate(281 297)" filter="url(#shadow)"><path d="M0 27 38 5l38 22-38 22z" fill="#e8e0d2"/><path d="M0 27v40l38 22V49z" fill="#d9cfbf"/><path d="M76 27v40L38 89V49z" fill="#c9bba8"/><path d="M-4 26 38 2l42 24-8 5-34-20-34 20z" fill="#bc6e55"/><path d="M48 10v-22h6v22" stroke="#bc6e55" stroke-width="4"/></g>
+          <!-- studio --> <g transform="translate(125 281)" filter="url(#shadow)"><path d="M0 38 56 6l56 32-56 32z" fill="#e8e0d2"/><path d="M0 38v51l56 32V70z" fill="#d9cfbf"/><path d="M112 38v51l-56 32V70z" fill="#c9bba8"/><path d="M0 38 56 6l56 32-11 6-45-26-45 26z" fill="#537e98"/><path d="M14 59l42 24v24L14 83z" fill="#a7c9c0"/></g>
+          <!-- trees / people / van --> <g><g fill="#839a78"><path d="M161 206c-22 0-22-26 0-26-3-20 25-22 24 0 19-1 20 26-2 26z"/><path d="M579 235c-22 0-22-26 0-26-3-20 25-22 24 0 19-1 20 26-2 26z"/><path d="M523 354c-22 0-22-26 0-26-3-20 25-22 24 0 19-1 20 26-2 26z"/></g><g stroke="#52615f" stroke-width="4"><path d="M173 206v16M591 235v16M535 354v16"/></g><g fill="#344349"><circle cx="372" cy="297" r="5"/><path d="M368 303h8l5 15h-18z"/><circle cx="387" cy="306" r="4"/><path d="M383 311h8l5 13h-18z"/></g><g transform="translate(569 265)"><path d="M0 15 36-6l36 21-36 21z" fill="#f1bc67"/><path d="M0 15v19l36 21V36z" fill="#d9a64f"/><path d="M72 15v19L36 55V36z" fill="#bd843e"/><path d="M20 4l16-9 16 9-16 9z" fill="#a7c9c0"/></g></g>
+          <g fill="#344349" font-family="ui-sans-serif, sans-serif" font-size="11" font-weight="700" letter-spacing="1.3"><text x="190" y="201">HOME</text><text x="318" y="169">CAFÉ</text><text x="424" y="111">LIBRARY</text><text x="464" y="270">GREENHOUSE</text><text x="270" y="282">POST</text><text x="112" y="262">STUDIO</text></g>
+        </svg>
+      </div>
+      <div class="caption"><span class="dot"></span><span>Direction: architecture first, then scale witnesses. Buildings receive a single identifying silhouette, an entrance cue and only enough material detail to catch the soft light.</span></div>
+    </div>
+    <aside class="panel">
+      <h2>Colour hierarchy</h2><p class="note">Quiet field first. Identity accents identify places. One warm signal earns attention.</p>
+      <div class="tokens">
+        <div class="token"><i class="swatch" style="background:#e8e0d2"></i><div><b>Lime plaster</b><span>#E8E0D2 · primary wall</span></div></div><div class="token"><i class="swatch" style="background:#d7c5ab"></i><div><b>Sunlit sand</b><span>#D7C5AB · paving</span></div></div>
+        <div class="token"><i class="swatch" style="background:#70858a"></i><div><b>Slate route</b><span>#70858A · road/water</span></div></div><div class="token"><i class="swatch" style="background:#839a78"></i><div><b>Sage canopy</b><span>#839A78 · plants</span></div></div>
+        <div class="token"><i class="swatch" style="background:#bc6e55"></i><div><b>Post terracotta</b><span>#BC6E55 · civic cue</span></div></div><div class="token"><i class="swatch" style="background:#c69b45"></i><div><b>Library ochre</b><span>#C69B45 · destination</span></div></div>
+        <div class="token"><i class="swatch" style="background:#537e98"></i><div><b>Studio blue</b><span>#537E98 · destination</span></div></div><div class="token"><i class="swatch" style="background:#925c63"></i><div><b>Café berry</b><span>#925C63 · awning</span></div></div>
+        <div class="token"><i class="swatch" style="background:#a7c9c0"></i><div><b>Greenhouse glass</b><span>#A7C9C0 · translucent</span></div></div><div class="token"><i class="swatch" style="background:#f1bc67"></i><div><b>Welcome light</b><span>#F1BC67 · scarce signal</span></div></div>
+      </div>
+      <p class="formula">60% warm neutral + 20% green/slate field + 15% destination accents + ≤5% signal.</p>
+    </aside>
+  </section>
+  <div class="rule"></div>
+  <section><h2>Six distinct destinations</h2><p class="note">The roof line, entrance and one adjacent prop need to name the place before a label does.</p>
+    <div class="components">
+      <div class="component"><svg viewBox="0 0 120 64"><path d="M8 33 60 5l52 28-52 27z" fill="#e8e0d2"/><path d="M8 33v20l52 27V60z" fill="#d9cfbf"/><path d="M112 33v20L60 80V60z" fill="#c9bba8"/><path d="M4 33 60 2l56 31-11 6-45-25-45 25z" fill="#925c63"/><path d="M54 57h12v15H54z" fill="#537e98"/></svg><h3>Home</h3><p>Two-volume gable, porch, planted threshold.</p></div>
+      <div class="component"><svg viewBox="0 0 120 64"><path d="M15 37 60 11l45 26-45 26z" fill="#e8e0d2"/><path d="M15 37v19l45 26V63z" fill="#d9cfbf"/><path d="M105 37v19L60 82V63z" fill="#c9bba8"/><path d="M11 36 60 8l49 28-9 5-40-23-40 23z" fill="#bc6e55"/><path d="M74 15V0" stroke="#bc6e55" stroke-width="5"/></svg><h3>Post</h3><p>Mail flag, slot, parcel bench, small van.</p></div>
+      <div class="component"><svg viewBox="0 0 120 64"><path d="M12 40 60 13l48 27-48 28z" fill="#e8e0d2"/><path d="M12 40v20l48 28V68z" fill="#d9cfbf"/><path d="M108 40v20L60 88V68z" fill="#c9bba8"/><path d="M8 39 60 9l52 30-10 6-42-25-42 25z" fill="#c69b45"/><path d="M38 18 60 5l22 13V8L60-5 38 8z" fill="#d6b563"/></svg><h3>Library</h3><p>Stepped book roof, deep entry, return slot.</p></div>
+      <div class="component"><svg viewBox="0 0 120 64"><path d="M9 39 60 10l51 29-51 29z" fill="#e8e0d2"/><path d="M9 39v20l51 29V68z" fill="#d9cfbf"/><path d="M111 39v20L60 88V68z" fill="#c9bba8"/><path d="M5 38 60 7l55 31-11 6-44-25-44 25z" fill="#537e98"/><path d="M22 52l38 22v10L22 62z" fill="#a7c9c0"/></svg><h3>Studio</h3><p>Asymmetric shed, tall work glazing, board outside.</p></div>
+      <div class="component"><svg viewBox="0 0 120 64"><path d="M6 36 60 6l54 30-54 29z" fill="#e8e0d2"/><path d="M6 36v18l54 29V65z" fill="#d9cfbf"/><path d="M114 36v18L60 83V65z" fill="#c9bba8"/><path d="M2 36 60 3l58 33-11 6-47-27-47 27z" fill="#925c63"/><path d="M16 49l44 24v8L16 57z" fill="#f1bc67"/></svg><h3>Café</h3><p>Low corner block, broad awning, two tiny tables.</p></div>
+      <div class="component"><svg viewBox="0 0 120 64"><path d="M13 36 60 9l47 27-47 28z" fill="#b9d8d0"/><path d="M13 36v20l47 28V64z" fill="#9ac1b7"/><path d="M107 36v20L60 84V64z" fill="#86afa6"/><path d="M13 36 60 9l47 27M32 25v43M60 9v59M88 25v43" fill="none" stroke="#577a76" stroke-width="3"/></svg><h3>Greenhouse</h3><p>Thin pitched frame, visible planting tables.</p></div>
+    </div>
+  </section>
+  <div class="rule"></div>
+  <section class="split">
+    <div><h2>Modelling and light rules</h2><ol class="rules"><li><b>Snap the town to a 1 m logical grid.</b> A lane is 2 units; homes are 3 × 3 or 3 × 4; civic buildings are 5–7 units across.</li><li><b>Build in layers.</b> Base, route, curb, shell, roof, threshold, prop kit. Keep them editable and separately stateful.</li><li><b>Carry detail on roofs and thresholds.</b> Add fascia thickness, shallow overhangs, a few large seams, and one interruption: skylight, chimney, gutter or planter.</li><li><b>Use orthographic camera.</b> Start at 45° yaw / 35.2644° downward elevation. Orthographic scale frames the diorama; do not chase the crop by distorting buildings.</li><li><b>Light like a miniature outside.</b> Cool fill plus one soft Sun key. Short contact AO for feet, eaves, curbs and pots only.</li><li><b>Keep materials matte.</b> Plaster, timber, road and foliage need high roughness. Glass needs tint, thickness and a dark frame.</li></ol></div>
+    <div><h2>What would make it feel cheap</h2><ul class="pitfalls"><li>Every building gets the same roof pitch, chimney and large front label.</li><li>Strong bloom, pure white walls, black outlines or lots of saturation are used to force readability.</li><li>Roads become uninterrupted grey bands instead of routes with planted corners, crossings, benches and setbacks.</li><li>AO becomes wide dirty shading rather than close contact separation.</li><li>Every edge is rounded equally, making architecture look like generic toys.</li><li>People, cars and trees are as visually loud as destinations.</li><li>Shadows, greenery or signs are baked into one texture, eliminating future interaction states.</li></ul></div>
+  </section>
+  <div class="rule"></div>
+  <section><h2>Source set</h2><p class="note">Primary public sources inspected for this board. Observations are interpretation, not copied art direction.</p><div class="sources">
+    <a class="source" href="https://oskarstalberg.com/Townscaper/" target="_blank" rel="noreferrer"><small>Official interactive work</small><b>Townscaper · Oskar Stalberg</b><span>Rule-based variation; water/route field and compact architectural clusters.</span></a>
+    <a class="source" href="https://www.monumentvalleygame.com/mv1" target="_blank" rel="noreferrer"><small>Official gallery</small><b>Monument Valley · ustwo games</b><span>Silhouette, framing and disciplined colour hierarchy.</span></a>
+    <a class="source" href="https://www.paperholm.com/work/paperholm" target="_blank" rel="noreferrer"><small>Creator portfolio</small><b>Paperholm · Charles Young</b><span>Miniature architectural craft: scale, roof rhythm and restrained surfaces.</span></a>
+    <a class="source" href="https://www.paperholm.com/work/threecolour-houses" target="_blank" rel="noreferrer"><small>Creator portfolio</small><b>Three-Colour Houses · Charles Young</b><span>Constrained colour systems create authored variation.</span></a>
+    <a class="source" href="https://docs.blender.org/manual/en/2.90/render/cameras.html" target="_blank" rel="noreferrer"><small>Blender manual</small><b>Cameras · orthographic</b><span>Parallel lines do not converge; orthographic scale establishes apparent scene size.</span></a>
+    <a class="source" href="https://docs.blender.org/manual/en/4.2/render/lights/light_object.html" target="_blank" rel="noreferrer"><small>Blender manual</small><b>Light objects</b><span>Sun direction, broad emitters and soft shadow behaviour.</span></a>
+    <a class="source" href="https://docs.blender.org/manual/en/3.0/render/materials/settings.html" target="_blank" rel="noreferrer"><small>Blender manual</small><b>Material roughness</b><span>Microfacet roughness controls the spread of specular reflection.</span></a>
+    <a class="source" href="https://docs.blender.org/manual/en/5.0/render/shader_nodes/input/ao.html" target="_blank" rel="noreferrer"><small>Blender manual</small><b>Ambient occlusion</b><span>Use only for close local occlusion, not global grime.</span></a>
+  </div></section>
+  <p class="footer">Prepared 08 Oct 2026 · The underlying source notes and implementation-ready values are in <a href="research.json">research.json</a>. This board uses only hand-built SVG/CSS components; no source imagery was copied.</p>
+</main>
+</body>
+</html>

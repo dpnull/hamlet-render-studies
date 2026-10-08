@@ -1,0 +1,120 @@
+{
+  "title": "Hamlet home — one functional cutaway room",
+  "status": "proposed visual direction; no external art copied",
+  "thesis": "Make one sunlit, open-front domestic room that reads as a hand-built miniature. Each useful Hamlet action is attached to a distinct piece of furniture, while one clear inner loop leaves the bean room to arrive, pause and act.",
+  "source_notes": [
+    {
+      "name": "Unpacking — official site, Witch Beam",
+      "url": "https://www.unpackinggame.com/",
+      "observed": "The official description foregrounds fitting possessions into a home, domestic nooks, and learning a life through the things that remain.",
+      "translation": "Use possessions as quiet evidence of function: a single red envelope at the mail tray, clipped lesson sheets, a half-used pencil cup and one folded throw. Avoid decorative clutter without a job."
+    },
+    {
+      "name": "Tiny Glade — official page, Pounce Light",
+      "url": "https://pouncelight.games/tiny-glade/",
+      "observed": "Pounce Light calls Tiny Glade a relaxing diorama builder for whimsical castles, cottages and ruins.",
+      "translation": "Favor readable, generous silhouette, irregular hand-made details and soft outdoor light over a dense simulation of an interior."
+    },
+    {
+      "name": "Mark Turpin — official architectural-miniature portfolio",
+      "url": "https://www.markturpin.com/",
+      "observed": "The artist documents one-of-a-kind miniature houses, structures and room settings.",
+      "translation": "Give the room a deliberate display-object edge: substantial plinth, wall thickness, millwork depth and a framed cutaway boundary rather than invisible game walls."
+    },
+    {
+      "name": "Gooyland — official miniature-worlds studio",
+      "url": "https://gooyland.com/",
+      "observed": "The studio describes fully hand-carved, sculpted and wired miniature worlds, from a detail vignette to a complete room.",
+      "translation": "Reserve fine detail for a few tactile points: peg rail, paper edge, ceramic planter, brass lamp and visible wood joinery. Light should make those points legible."
+    }
+  ],
+  "composition": {
+    "camera": "Orthographic, yaw 45 degrees, pitch 35.2644 degrees below horizontal. Open the front and right walls. Crop the back-left corner near the upper third; keep the window just left of centre.",
+    "logical_size": "7.8 W × 6.2 D × 4.4 H scene units; floor slab 0.28 H and wall thickness 0.20.",
+    "movement_clearance": "Keep a 1.05-unit loop from entry threshold to mail tray, desk, workbench and sofa. Do not put props in the loop. Bean body diameter is about 0.60; interaction points must leave 0.85 clear around the bean.",
+    "focal_order": ["window light", "bean / active affordance", "warm wood workbench", "sage sofa"],
+    "cutaway_edges": "Use 0.10–0.14 chamfers only on plinth, sill and furniture hand-contact edges. Keep walls and large shelves crisp so the room does not melt into a toy blob."
+  },
+  "functional_objects": [
+    {
+      "id": "mail_tray",
+      "function": "mail / evening letter",
+      "placement": "At the entrance, on a narrow shoe-and-mail console facing into the room.",
+      "geometry": "0.92 W × 0.62 D × 0.88 H oak console; shallow terracotta tray, upright postcard slot, 3 brass hooks above.",
+      "interaction": "Bean arrives from the threshold, pauses beside the tray, lifts one envelope; tray gets a faint warm rim only when mail is ready.",
+      "story_prop": "One stamped envelope and a small key bowl; never a stack of generic letters."
+    },
+    {
+      "id": "pinboard",
+      "function": "notes",
+      "placement": "On the back wall, visible above the workbench without competing with the window.",
+      "geometry": "1.22 W × 0.82 H linen board in an oak rail; 3–5 paper tiles at 0.03 depth, dark green round pins.",
+      "interaction": "Bean turns toward it; one note can lift 0.03 and settle. The active note becomes warm paper, not a neon state.",
+      "story_prop": "Two tilted cards, one clipped receipt-size note, one small dried-leaf marker."
+    },
+    {
+      "id": "study_desk",
+      "function": "lesson / study session",
+      "placement": "Under the window, rotated slightly toward the view; the chair faces the window and leaves the aisle open behind it.",
+      "geometry": "1.42 W × 0.68 D × 0.74 H desk; arched-back chair 0.54 W; small mushroom lamp and two stacked books.",
+      "interaction": "Bean steps onto a low footstool, opens a lesson folio and settles into a tiny idle bob. Lamp warms to 2700 K when studying.",
+      "story_prop": "One pencil, one open folio, one cup with pens. Keep the desktop mostly clear."
+    },
+    {
+      "id": "idea_workbench",
+      "function": "idea / draft",
+      "placement": "Along the left wall beneath the pinboard, perpendicular to the desk to make an L-shaped productive corner.",
+      "geometry": "1.68 W × 0.76 D × 0.92 H butcher-block bench; peg rail, two small drawers, cork stamp, blue sketchbook and clay cup.",
+      "interaction": "Bean reaches up to set a sketchbook or stamp down. A drafted idea is a small paper plane / folded-card animation, never an abstract particle cloud.",
+      "story_prop": "Three peg silhouettes and one imperfect hand-cut swatch give it craft without becoming a workshop set."
+    },
+    {
+      "id": "sofa",
+      "function": "rest / safe return after absence",
+      "placement": "Front-right, angled 12 degrees inward; it frames the room without blocking the entry-to-desk loop.",
+      "geometry": "1.62 W × 0.76 D × 0.72 H low sage sofa; two cushions, folded ochre throw, round side table.",
+      "interaction": "Bean climbs via a 0.18-high ottoman, tucks into the left cushion and breathes slowly. No completion or productivity signal appears.",
+      "story_prop": "A mug or closed book, selected by state, but only one at a time."
+    }
+  ],
+  "kit": {
+    "architectural": ["floor slab with visible birch-ply edge", "back plaster wall", "left half-wall / workbench wall", "deep 3-pane wood window", "oak baseboard", "painted door trim"],
+    "furniture": ["mail console", "pinboard", "study desk and chair", "workbench and peg rail", "low sofa and ottoman", "round side table", "two plants maximum"],
+    "micro_detail_budget": "At 1080p, make 8–12 details visibly resolve: window latch, curtain tie, lamp shade, paper stack, tray lip, pin heads, peg rail, drawer pull, cushion seam and planter rim. Let smaller items merge into grouped shapes."
+  },
+  "materials": {
+    "warm_wood": {"color": "#A8734E", "roughness": 0.72, "use": "desk, workbench, sill, small furniture"},
+    "birch_edge": {"color": "#E2C58F", "roughness": 0.82, "use": "plinth and plywood edge"},
+    "plaster": {"color": "#F2E8D5", "roughness": 0.94, "use": "walls; add only a 2–3% warm variation"},
+    "sage_textile": {"color": "#91A98E", "roughness": 0.98, "use": "sofa and curtain accent"},
+    "terracotta": {"color": "#C9795D", "roughness": 0.86, "use": "mail tray and small ceramic accent"},
+    "ink": {"color": "#41524E", "roughness": 0.7, "use": "pins, hardware, sparse line detail"},
+    "sunlit_paper": {"color": "#FFF7E8", "roughness": 0.96, "use": "notes, envelopes, folio pages"},
+    "signal_ochre": {"color": "#D6A84E", "roughness": 0.76, "use": "throw and restrained active glow"}
+  },
+  "lighting": {
+    "day": "Area key through the window from upper left, warm 5100 K, broad 3.2-unit source, soft shadows. Cool sky fill at 15–20% of key. Add a small negative fill behind the sofa if it flattens.",
+    "practical": "Desk lamp uses a 2700 K point/area light with a small radius and is off until study. Do not light every shelf.",
+    "contact": "Use short local contact shadow only below furniture, inside the tray and under the sill. Avoid global dirt or a long AO fog.",
+    "tone": "ACES or equivalent gentle rolloff; avoid bloom. White plaster should remain cream, never clip to pure white."
+  },
+  "motion": {
+    "idle": "Curtain shifts 1–2 degrees over 5–7 seconds; dust motes are optional and must be nearly invisible; bean breathes at 3–4% vertical scale over 1.8 seconds.",
+    "walk": "Use 6–8 very short waypoints around the central loop. Move at 0.55–0.70 scene units/s, with a brief 0.35 s stop at each interaction point. Turn first, then translate, so the bean reads as intentional.",
+    "reduced_motion": "Keep the scene still, retain state through one material/value change, and do not auto-walk the bean."
+  },
+  "build_order": [
+    "Block the plinth, two walls, window and walkable loop in clay. Check that all five functions can be pointed to without text.",
+    "Place desk, workbench and sofa; reserve the bean's 1.05-unit loop before adding any props.",
+    "Add the functional affordances: tray, pinboard, folio, sketchbook and ottoman.",
+    "Tune window key, contact shadows and material roughness in an untextured render.",
+    "Add the small crafted details last. Remove any detail that does not clarify scale, touch or use."
+  ],
+  "avoid": [
+    "A row of labelled stations around the wall: that makes a feature menu, not a home.",
+    "Uniform rounding on every object, high saturation, black outlines or bloom used to force legibility.",
+    "A glassless window or invisible light source; the daylight needs a believable origin and sill depth.",
+    "Tight prop clusters in the bean's loop, long furniture runs without rests, or a sofa that blocks the door.",
+    "Productivity trophies, score effects or a special reward for resting."
+  ]
+}

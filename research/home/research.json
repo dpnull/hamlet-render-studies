@@ -1,0 +1,29 @@
+{
+  "title": "Bean home · 2D reference board",
+  "scope": "A private visual study for Hamlet. All rendered room artwork is original SVG; these references inform composition and interaction language only.",
+  "sources": [
+    {
+      "name": "Unpacking · Witch Beam",
+      "url": "https://witchbeam.com.au/games/",
+      "use": "Readable domestic cutaways, object-scale storytelling, and the calm satisfaction of a thing belonging somewhere."
+    },
+    {
+      "name": "A Little to the Left · Max Inferno",
+      "url": "https://www.maxinferno.com/press/",
+      "use": "Tactile household objects and small, intuitive cause-and-effect without a heavy interface."
+    },
+    {
+      "name": "Spiritfarer · Thunder Lotus",
+      "url": "https://thunderlotusgames.com/games/spiritfarer/",
+      "use": "Warm hand-crafted materials, generous negative space, and a home that supports care rather than pressure."
+    }
+  ],
+  "translation": [
+    "Cutaway room: one large structural silhouette frames distinct, legible activity zones.",
+    "Function becomes furniture: letters in a tray, notes on a pinboard, lessons at a desk, ideas at a workbench.",
+    "Cream walls, deep forest shadows, rust accents and honey wood form a low-contrast, afternoon palette.",
+    "Bean stays small against furniture, so a walk across the rug feels like a real journey through its home.",
+    "Feedback is physical and local: an envelope lifts, a pin note flutters, a notebook opens, a bulb warms."
+  ],
+  "original_components": ["sunlit window", "arch rug", "letter tray", "pinboard", "lesson desk", "idea workbench", "sleepy bean", "plants and tea"]
+}

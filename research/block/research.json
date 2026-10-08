@@ -1,0 +1,103 @@
+{
+  "title": "Hamlet block-town render lab — reference notes",
+  "scope": "A code-drawn, side-on/cutaway town study. The goal is the hierarchy and legibility of Kairosoft-like management scenes, not a reproduction of Kairosoft assets, UI, characters, names, or layouts.",
+  "questions": [
+    {
+      "question": "What camera makes floors and the street readable at one glance?",
+      "answer": "Use an orthographic side elevation with a shallow 6–10px downward reveal only in roofs and awnings. Treat the street as the bottom fifth of the frame; stack two 72px interior bays above it. This keeps the cutaway logic instantly readable and avoids the competing diagonals of an isometric map."
+    },
+    {
+      "question": "What is the smallest useful sprite system?",
+      "answer": "Build on an 2px detail unit. A citizen is 16×24px, a door is 16×30px, a window is 20×20px, a shop bay is 72×56px, and a floor is 72px high including its slab. At that scale a person remains an intentional moving mark, while each room can still carry one unmistakable prop."
+    },
+    {
+      "question": "How should road, citizens and buildings separate?",
+      "answer": "Give the road the darkest neutral and make it a clean horizontal band; set citizens in saturated, light-value tops; reserve the building outline for one dark ink. Put only 2–5 citizens on a screen-width scene and align their feet to a single pavement baseline."
+    },
+    {
+      "question": "How dense should the detail be?",
+      "answer": "Use a three-speed rhythm: large masses every 72px (shop bays), medium anchors every 24–36px (windows, doors, trees), and tiny one-off accents every 48–96px (pot, lamp, parcel, cloud). Leave some bays calm so the eye can find movement."
+    },
+    {
+      "question": "What does minimal signage mean here?",
+      "answer": "Every building earns one symbol-like sign, 14–24px wide, plus an optional 3–5 character wordmark outside the simulation view. The render itself should use motifs—book, cup, sun, envelope—not rows of tiny text."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mega Mall Story — App Store",
+      "url": "https://apps.apple.com/us/app/mega-mall-story/id454679700",
+      "type": "official store listing / screenshots",
+      "observations": [
+        "The listing describes a tower of shops, stairs, elevators and a heliport, confirming the core readable-unit idea: each floor is a distinct, shallow compartment with a single function.",
+        "The public screenshots are a useful reference for hierarchy in a management view: repeated floor bands, small character marks, and a few high-chroma functional anchors make a crowded scene scannable.",
+        "The reference informs construction rules only. No screenshot, sprite, UI framing, text, or game asset is copied into the local board."
+      ]
+    },
+    {
+      "title": "Mega Mall Story 2 — Google Play",
+      "url": "https://play.google.com/store/apps/details?id=net.kairosoft.android.depart2",
+      "type": "official store listing / screenshots",
+      "observations": [
+        "The listing explicitly presents a bigger, higher mall and different arrival modes, reinforcing that traffic and vertical circulation need to read as a few bold route marks rather than a field of micro-detail.",
+        "The official promotional frame makes each room legible by silhouette and color grouping before any label can be read; this is the right test for a phone-sized Hamlet town."
+      ]
+    },
+    {
+      "title": "Kairo Park — Kairosoft developer website",
+      "url": "https://kairopark.jp/",
+      "type": "official developer site",
+      "observations": [
+        "Use it as provenance for the cited genre reference. The board retains an original, muted Hamlet palette and a side-on construction rather than borrowing the brand's presentation."
+      ]
+    },
+    {
+      "title": "Bean Town Mockup — local historical reference",
+      "url": "../../../../docs/reference/2026-10-03/mockups/town-mockup.html",
+      "type": "local reference, not a public source",
+      "observations": [
+        "It establishes Hamlet's prior direction: a small town that grows gently, buildings as focused modules, a recurring little inhabitant, and no punishment for absence.",
+        "It uses a top-down/isometric block stand-in. This lab deliberately tests the requested side-on/cutaway alternative and should be evaluated as an art-direction study, not an implemented product decision."
+      ]
+    }
+  ],
+  "palette": {
+    "ink": "#26313A",
+    "paper": "#FFF9EE",
+    "sky": "#CFE8EA",
+    "skyShade": "#A9CDD0",
+    "grass": "#94BF8B",
+    "road": "#56616A",
+    "pavement": "#D8D4C8",
+    "brick": "#D87962",
+    "mustard": "#E4B94F",
+    "teal": "#438F98",
+    "lilac": "#9685B8",
+    "leaf": "#5D9C75",
+    "window": "#91C9D1",
+    "warmLight": "#F7DC8B"
+  },
+  "construction_rules": [
+    "Lock the camera to a straight-on orthographic elevation; use no vanishing-point perspective and no more than a 10px roof/awning top reveal.",
+    "Use two-unit detail increments with shallow shaded returns. The finished study uses 218-unit building parcels and 150-unit floor steps; residents are about 30 units tall. Avoid universal heavy outlines.",
+    "Separate the scene into five stable value bands: pale sky, building paper, medium-color facades, dark road, then dark ink outlines. A grayscale screenshot should still show those bands.",
+    "Make one building read as one verb: a book shelf, a kettle, a letter slot, a studio lamp. Put one primary prop in the room's upper half and keep the doorway clear.",
+    "Use a single continuous pavement baseline. Citizens touch it exactly; doors, planters and bus stops can interrupt it, but never float above it.",
+    "Allocate saturation as a navigation system: neutral architecture, one color family per place, and bright warm yellow only for active lights, parcels or a selected detail.",
+    "Repeat the structural cadence, not identical decoration: slabs align; roof pitches, window arrangements and accent colors alternate 1-2-1 across the street.",
+    "Limit in-render text to one short landmark wordmark per 3–4 buildings. Communicate most functions with a 2–3-color icon sign; keep complete labels in surrounding UI or accessible text."
+  ],
+  "pitfalls": [
+    "Too many equal-weight windows, plants and signs flatten the scene. Preserve a quiet bay after every two busy bays.",
+    "A road that is too light loses pedestrian contrast; a road that is too tall makes the town feel like a traffic game. Keep it about 18–22% of scene height.",
+    "Generic pixel-noise dithering reads as texture, not care. Use small marks only when they explain material, use or change of state.",
+    "Tiny rendered copy becomes illegible at phone scale and makes localization painful. Keep labels semantic and external whenever possible.",
+    "Copying Kairosoft's interface chrome, exact palette, character designs, or recognizable room layouts would turn inspiration into imitation. Keep this study original in composition, palette and marks.",
+    "If every citizen has a different saturated outfit, they become confetti. Use two or three outfit colors and one movement cue at a time.",
+    "Hard black outlines on every interior object create visual static. Reserve the dark 4px outline for architecture and primary props; use color edges for secondary things."
+  ],
+  "handoff": {
+    "recommended_start": "The final study develops five parcels with fifteen furnished rooms from the initial three-building slice: post/letters, a reading room, and a warm evening cafe. Verify at 390px wide before adding a second floor or a fourth building.",
+    "do_not_import": "Do not use source screenshots, extracted sprites, game names, logos, in-game UI or copied layout geometry in the product render."
+  }
+}

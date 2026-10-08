@@ -1,0 +1,106 @@
+{
+  "title": "Hamlet paper elevation research",
+  "date": "2026-10-08",
+  "scope": "A proposed 2D architectural-elevation direction for an adult, warm town. This is visual research only, not an art decision or an application specification.",
+  "reference_policy": "The accompanying board contains only newly drawn SVG shapes and colour swatches. It does not embed, copy, trace, or redistribute source artwork.",
+  "sources": [
+    {
+      "title": "Mega Mall Story — Kairosoft",
+      "maker": "Kairosoft",
+      "kind": "official game page and official feature image",
+      "url": "https://kairosoft.net/switch/?_lh=en",
+      "visual_url": "https://kairosoft.net/switch/image_en/game/gm30_feature.png",
+      "reviewed": "The official feature image was visually inspected on 2026-10-08.",
+      "observations": [
+        "The mall is read as a stack of shallow room bands with one strong floor line per level.",
+        "A very small cast still reads because each room has one obvious action or object cluster.",
+        "Escalators, storefronts and the roadside establish program before ornament; the cross-section remains legible at a glance."
+      ],
+      "take": "Borrow the hierarchy of room bands and visible life; do not borrow pixels, UI, shop labels, commercial-game density, or its saturated outline treatment."
+    },
+    {
+      "title": "Townscaper",
+      "maker": "Oskar Stålberg / Raw Fury",
+      "kind": "official site and official key art",
+      "url": "https://www.townscapergame.com/",
+      "visual_url": "https://images.squarespace-cdn.com/content/v1/6075aa09936ef4121583faed/1618445657215-Z73BPBOQK968PDBE619P/Townscaper_Keyart_16x9%2B%281%29.png",
+      "reviewed": "The official key art was visually inspected on 2026-10-08. The site states that placement creates houses, arches, stairways, bridges and backyards from configurations on an irregular grid.",
+      "observations": [
+        "Neighbouring facades use a limited grammar: a common roof line, simple window rhythm, restrained seams and gentle value changes.",
+        "Colour blocks differentiate neighbours without needing a unique silhouette for every building.",
+        "The graphic is coherent because detail stays subordinate to the large roof and wall shapes."
+      ],
+      "take": "Use a small facade grammar and repeat it with controlled variation. Hamlet keeps its own square placement logic and its own adult paper-and-ink material."
+    },
+    {
+      "title": "Brutal East II: Build Your Own Concrete Eastern Bloc",
+      "maker": "Zupagrafika",
+      "kind": "official publisher / design-studio page",
+      "url": "https://www.zupagrafika.com/shop/brutal-east-volume-two",
+      "reviewed": "The official page describes nine pre-cut and pre-folded cardboard models and shows product/model imagery.",
+      "observations": [
+        "A paper object reads through intentional side faces, fold lines, tabs and a small cast shadow rather than through noisy texture.",
+        "The difference between a front plane and a return plane is enough to make a compact facade feel made, not flat.",
+        "A construction grammar can stay clear when each fold earns a structural role."
+      ],
+      "take": "Use two or three shallow paper planes per building and one consistent lower-right cast shadow. Avoid literal craft tabs in the product view unless they help navigation."
+    },
+    {
+      "title": "(w)Ego: The (w)Ego Game",
+      "maker": "MVRDV",
+      "kind": "official architectural publication PDF",
+      "url": "https://mvrdv.com/media/uploads/220504_Wego_SL_Pages%20selection.pdf",
+      "reviewed": "The source preview describes a longitudinal section with interconnected rooms, stairs, furniture and human silhouettes in colour-coded zones.",
+      "observations": [
+        "A cutaway is understood when circulation makes the spaces relate, not merely when rooms are exposed.",
+        "Small human figures reveal the intended scale of stairs, furniture and openings.",
+        "Room colour can organise program, but needs quiet shared structure to avoid becoming a diagram."
+      ],
+      "take": "Use a visible stair or street connection between rooms, a shared baseline, and people as scale checks; keep Hamlet's palette calm and its rooms purposeful."
+    }
+  ],
+  "direction": {
+    "name": "Paper street elevation",
+    "one_sentence": "A front-on, modular town street whose cutaway rooms sit behind refined inked facades, as though shallow painted paper architecture has been pinned onto a cream drawing sheet.",
+    "graphic_clarity": [
+      "Work from a 24 px structural unit at 1×: frontages are 4–7 units wide, room floors 4 units tall, doors 1.5 units wide and windows 1 unit square.",
+      "Every building gets one silhouette cue: pitched roof, stepped parapet, wide awning, corner tower, or a tall entry. Do not combine more than two cues on one small facade.",
+      "Keep one dark ink (#33464A) for structure. Use 2 px exterior outlines, 1.25 px interior lines, and no more than one dashed construction/fold line per building.",
+      "Make the section readable in this order: roof/silhouette, room band, door/window, one active resident, then ornament. If an element does not survive at phone size, remove it."
+    ],
+    "palette": [
+      {"name":"Paper cream","hex":"#F6EEDC","role":"ground, cut-paper faces"},
+      {"name":"Ink teal","hex":"#33464A","role":"all structure and text-like marks"},
+      {"name":"Plaster peach","hex":"#E7C9A3","role":"quiet facade field"},
+      {"name":"Coral tile","hex":"#C96F5D","role":"roofs, post cues, limited focus"},
+      {"name":"Harbour teal","hex":"#4C8B88","role":"shop and civic counterpoint"},
+      {"name":"Moss","hex":"#809779","role":"planting and secondary wall"},
+      {"name":"Lamp gold","hex":"#F2C86A","role":"warm lit windows only"},
+      {"name":"Road oat","hex":"#D5C5AE","role":"road surface and curb"}
+    ],
+    "material_rules": [
+      "Use flat fills with sparse, hand-drawn line texture: at most 3 short marks per large surface. Do not use a global noise filter or photoreal paper texture.",
+      "Use a single light direction from upper left. Returns are 12–16% darker; cast shadows are ink at 14% opacity, offset 5 px right and 7 px down at 1×.",
+      "Paper depth stays shallow: facade plane 0, return plane +6 px, roof plane +10 px. The town should remain an elevation, not pretend to be 3D isometric art.",
+      "Reserve lamp gold for interiors and tiny street lamps. At night, darken paper and road slightly but preserve the ink contrast."
+    ],
+    "facade_and_room_rules": [
+      "Build from three reusable modules: facade shell, interior room inset, and foreground/sidewalk prop strip. Keep them separately drawable and movable.",
+      "Show one room story per bay: a desk and seated figure, a counter and standing figure, or a letter table and delivery figure. Three props maximum before the room becomes a dollhouse inventory.",
+      "Windows should align to the structural grid, while awnings, plants and signage can break it slightly. This keeps the town hand-made without losing placement clarity.",
+      "Use closed facades for most buildings; open just one or two cutaway rooms in the initial street. The alternation makes open interiors feel special and preserves visual rest."
+    ],
+    "inhabitant_scale": [
+      "A standing inhabitant is 0.72 of the clear floor height; its head should sit below the window head and its feet exactly on the room baseline.",
+      "Use simple round or bean-like heads, two legs and one gesture. Faces are optional below 18 px tall; posture and prop should carry the action.",
+      "Place at most three inhabitants in any uninterrupted 160 px street span. Every person must either show scale, suggest a task, or indicate a route."
+    ],
+    "street_organisation": [
+      "Use three constant horizontal bands: building plinth, 18–22 px pedestrian pavement, and 34–42 px shared lane. Repeated bands make the town rearrangeable.",
+      "Make the curb line continuous across building modules. A road segment never terminates at a facade; it turns at a visible corner module or leaves the frame.",
+      "Use a teal delivery van or coral bicycle sparingly as a moving accent. It must sit in the lane, never overlap the pavement or room band.",
+      "Cluster planting, mailbox and lamp props at seams between buildings. They soften joins and offer rhythm without disguising the grid."
+    ],
+    "first_art_test": "Draw one 6-unit news-and-post facade, one 5-unit home cutaway, a 10-unit road run, two inhabitants, one lamp and one van. Review it at actual phone size in day and night before extending the kit."
+  }
+}

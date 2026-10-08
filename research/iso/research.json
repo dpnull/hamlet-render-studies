@@ -1,0 +1,170 @@
+{
+  "title": "Hamlet isometric town: production research",
+  "scope": "A small, crafted architectural diorama for a future editable 3D town study. This is visual direction, not a claim about the current runtime or product implementation.",
+  "last_reviewed": "2026-10-08",
+  "sources": [
+    {
+      "id": "townscaper",
+      "title": "Townscaper",
+      "creator": "Oskar Stalberg",
+      "url": "https://oskarstalberg.com/Townscaper/",
+      "kind": "official interactive work",
+      "observations": [
+        "The direct-manipulation town reads because a limited set of roof, wall, bridge, stair and garden forms repeat with small contextual variation.",
+        "Water, streets and building footprints form the calm field; bright walls and roofs become the readable clusters.",
+        "The lesson for Hamlet is the rule system, not its saturated seaside palette or procedurally irregular coastline."
+      ]
+    },
+    {
+      "id": "monument-valley",
+      "title": "Monument Valley",
+      "creator": "ustwo games",
+      "url": "https://www.monumentvalleygame.com/mv1",
+      "kind": "official game page and image gallery",
+      "observations": [
+        "Large, quiet planes and high silhouette contrast make places legible before small decoration is read.",
+        "Colour is allocated by role: a muted environment, a small number of architectural accents, then a focused character cue.",
+        "Use its disciplined framing and colour hierarchy; avoid impossible-geometry puzzles, floating fragments and theatrical over-stylisation."
+      ]
+    },
+    {
+      "id": "paperholm",
+      "title": "Paperholm",
+      "creator": "Charles Young",
+      "url": "https://www.paperholm.com/work/paperholm",
+      "kind": "creator portfolio",
+      "observations": [
+        "A thousand additions still read as one place because scale, material and proportion stay consistent while silhouettes vary.",
+        "The material reality is useful: thin overhangs, layered roof edges, chimneys, steps and openings create richness without busy texture maps.",
+        "For the town, put detail on roof lines, threshold pieces and small outdoor objects; keep broad wall faces almost plain."
+      ]
+    },
+    {
+      "id": "three-colour-houses",
+      "title": "Three-Colour Houses",
+      "creator": "Charles Young",
+      "url": "https://www.paperholm.com/work/threecolour-houses",
+      "kind": "creator portfolio",
+      "observations": [
+        "The work uses constrained three-colour combinations and a roughly consistent physical scale to make variation feel authored rather than random.",
+        "Adopt a base material plus two controlled building accents per district, with a rare warm signal reserved for interaction or welcome."
+      ]
+    },
+    {
+      "id": "blender-cameras",
+      "title": "Cameras — Orthographic",
+      "creator": "Blender Foundation",
+      "url": "https://docs.blender.org/manual/en/2.90/render/cameras.html",
+      "kind": "official documentation",
+      "observations": [
+        "In an orthographic camera, objects retain apparent size at any depth and parallel lines do not converge.",
+        "Orthographic scale controls composition, so establish the visible town extent before changing model proportions.",
+        "Use a 45-degree world yaw and a 35.2644-degree downward elevation for equal-looking X/Y axes; adjust pitch only if people or façades become unreadable."
+      ]
+    },
+    {
+      "id": "blender-lights",
+      "title": "Light Objects",
+      "creator": "Blender Foundation",
+      "url": "https://docs.blender.org/manual/en/4.2/render/lights/light_object.html",
+      "kind": "official documentation",
+      "observations": [
+        "A Sun light provides uniform directional daylight; its rotation, not its position, sets direction.",
+        "Larger emitter size produces softer shadows and highlights. Use a broad key to retain a miniature daylight feel.",
+        "The documentation places typical Sun strengths around 250 W/m² for overcast daylight and 1000+ W/m² for direct sun; scene colour management and exposure still need visual tuning."
+      ]
+    },
+    {
+      "id": "blender-materials",
+      "title": "Materials — settings",
+      "creator": "Blender Foundation",
+      "url": "https://docs.blender.org/manual/en/3.0/render/materials/settings.html",
+      "kind": "official documentation",
+      "observations": [
+        "Roughness controls the microfacet spread of specular reflection. Matte, high-roughness materials preserve shape and colour in a small mobile-friendly scene.",
+        "Keep walls, roads, plants and roof tiles non-metallic; reserve only a gentle lower-roughness accent for glass, wet paving or a vehicle windscreen."
+      ]
+    },
+    {
+      "id": "blender-ao",
+      "title": "Ambient Occlusion Node",
+      "creator": "Blender Foundation",
+      "url": "https://docs.blender.org/manual/en/5.0/render/shader_nodes/input/ao.html",
+      "kind": "official documentation",
+      "observations": [
+        "Ambient occlusion represents local hemispherical blockage and is suitable for controlled contact separation.",
+        "It is not global dirt: apply a short AO distance so eaves, curbs, pots and feet anchor, while façades remain clear."
+      ]
+    }
+  ],
+  "palette": {
+    "principle": "Warm neutral ground, desaturated blue-grey routes, quiet green planting, four identity accents, one only-for-meaning signal.",
+    "tokens": [
+      { "name": "lime plaster", "hex": "#E8E0D2", "role": "primary wall and page field" },
+      { "name": "sunlit sand", "hex": "#D7C5AB", "role": "paths, paving and roof-light" },
+      { "name": "slate route", "hex": "#70858A", "role": "road or water strip, kept low-saturation" },
+      { "name": "sage canopy", "hex": "#839A78", "role": "trees, greenhouse planting and garden beds" },
+      { "name": "post terracotta", "hex": "#BC6E55", "role": "post and warm civic cue" },
+      { "name": "library ochre", "hex": "#C69B45", "role": "library roof or bookmark cue" },
+      { "name": "studio blue", "hex": "#537E98", "role": "studio window or painted volume" },
+      { "name": "cafe berry", "hex": "#925C63", "role": "cafe awning only" },
+      { "name": "greenhouse glass", "hex": "#A7C9C0", "role": "translucent glazing, never an opaque wall" },
+      { "name": "ink", "hex": "#344349", "role": "sign glyphs, seams and tiny contrast" },
+      { "name": "welcome light", "hex": "#F1BC67", "role": "one small active/inviting signal" }
+    ],
+    "allocation": [
+      "About 60% warm neutrals, 20% green and slate environmental field, 15% building identity accents, and at most 5% high-attention warm signal.",
+      "Do not give each house an identity colour. The identity accent belongs to a destination, then repeats only in very small wayfinding details."
+    ]
+  },
+  "modeling_rules": [
+    "Use a 1 m logical grid. A normal lane is 2 grid units wide; a small house footprint is 3 by 3 or 3 by 4; civic destinations span 5 to 7 units. Keep all footprints, curb radii and planting beds snapped to it.",
+    "Build the town in layers: base slab, route tiles, curb/edge, building shell, roof cap, threshold, then a limited prop kit. This lets a renderer swap or animate layers without baking the city into one mesh.",
+    "Every building needs one distant-read silhouette cue: a long mail slot and flag for post, a stepped book-stack roof for library, a north-light sawtooth or tall window band for studio, a striped awning for cafe, and a slender pitched glass volume for greenhouse.",
+    "Roofs are the main isometric detail carrier. Give each roof a visible fascia thickness, shallow overhang, ridge or parapet, two to five large tile/standing-seam breaks, and one functional interruption such as a chimney, skylight, gutter, planter or vent.",
+    "Keep façades to two visible material values: main plaster/wood and recessed opening. Model a shallow sill, door recess and canopy before adding decals or texture noise.",
+    "Props establish scale. Use simple people about 1.65 m high and cars/vans about 4.2 m long. A person should occupy roughly a doorway height; vehicles should take most of a one-lane road width, leaving an obvious walking edge.",
+    "Planting is clustered, not sprinkled. Use one tree family with three height variants, rounded crowns, a dark trunk/ground-contact shape, and garden beds that follow the street or building edge.",
+    "Use physical sign shapes first: small projecting blade, painted door plaque, menu stand, mail icon relief. Copy should be optional and legible only when the user is already close enough to act.",
+    "Avoid beveling every edge. Bevel only the silhouette or light-catching edges of roof slabs, curbs, awnings, signs and vehicle bodies; a uniform softening pass makes the town toy-like and loses craft.",
+    "Keep each destination useful at a glance. A town reader should identify the home, post, library, studio, cafe and greenhouse from roof/entrance/adjacent prop before reading a label."
+  ],
+  "camera_and_lighting": {
+    "camera": [
+      "Default to orthographic, yaw 45 degrees and pitch 35.2644 degrees below horizontal. Lock the camera transform once the composition is accepted; move the town or use orthographic scale for reframing.",
+      "Frame a 12 to 16 building-town with a generous perimeter of ground plane so the diorama reads as an object, not as a cropped game map.",
+      "Maintain foreground-to-background height discipline: a tall civic building goes toward the top/back third, while key entrances face the lower-left or lower-right visible sides."
+    ],
+    "lighting": [
+      "Use one soft, cool-white world fill plus one Sun key angled from upper left or upper right. Keep shadow direction consistent across all exports.",
+      "Give the Sun a modest non-zero angle for soft, clean shadows. Add one broad, weak area fill only if the unlit facade loses important entrances; it should not erase the key direction.",
+      "Use short-range AO/contact shadow only at feet, trees, curbs, porch posts, roof overlaps and vehicles. It should be perceptible when removed, not visibly painted on.",
+      "Prefer high-roughness (approximately 0.65 to 0.9) dielectric materials for plaster, timber, road and foliage. Glass can sit near 0.2 to 0.35 but must have visible thickness/tint and a dark inner frame to stay readable.",
+      "Test in a 1x image and a 0.5x image. If road seams, entrance depth and destination accents disappear at 0.5x, increase geometric separation before increasing saturation."
+    ]
+  },
+  "component_brief": [
+    { "place": "home", "silhouette": "two-volume gable with one small porch", "detail": "potted plant and a single warm door inset", "accent": "none or a quiet local roof tone" },
+    { "place": "post", "silhouette": "short civic block with vertical mail flag", "detail": "wall slot, parcel bench, tiny delivery van", "accent": "terracotta" },
+    { "place": "library", "silhouette": "tall stepped roof/book-spine mass", "detail": "deep entry, exterior return slot, reading bench", "accent": "ochre" },
+    { "place": "studio", "silhouette": "asymmetric shed with sawtooth or high north-light", "detail": "large glazed work window, easel/board shape outside", "accent": "blue" },
+    { "place": "cafe", "silhouette": "low corner block with broad striped awning", "detail": "two tables and a sandwich-board sized sign", "accent": "berry" },
+    { "place": "greenhouse", "silhouette": "thin pitched transparent house", "detail": "visible frame rhythm, planting tables, water butt", "accent": "sage plus pale glass" }
+  ],
+  "pitfalls": [
+    "Do not treat an orthographic camera as a substitute for composition. A perfectly isometric view can still hide doors behind roofs or make streets feel like equal grey bands.",
+    "Do not use pure white walls, pure black outlines, fully saturated roofs, or strong bloom. Each destroys the material hierarchy and makes the town resemble a UI icon sheet.",
+    "Do not solve legibility with wordy signage. Repeated labels flatten hierarchy and create a theme-park feeling.",
+    "Do not use wide-radius AO or uniform dirty edge masks. The town should feel cared for, not weathered or game-grunged.",
+    "Do not give every roof the same pitch, chimney and dormer. Make a short set of roof families, then reserve a distinct interruption for civic buildings.",
+    "Do not let roads become an uninterrupted hard-surface grid. Break long routes with planted corners, benches, crossings, porch setbacks and tiny shared yards.",
+    "Do not let people, trees and vehicles compete with destinations. They are scale witnesses and movement cues, not collectible characters.",
+    "Do not bake signage, shadows or vegetation into a single building texture. Keep geometry/material channels separately editable for future interactive states."
+  ],
+  "first_scene_recipe": [
+    "Make a 14 by 14 grid slab with a 2-unit loop road and one T junction.",
+    "Place the home near the lower-front route, the library at the back focal point, cafe and post on the junction, studio on a quieter side street and greenhouse at the planted edge.",
+    "Add one person, one seated pair, one bicycle, one small van, seven trees, three benches, two planters and a single lit welcome signal.",
+    "Render two test passes: clay materials with lighting only, then the restrained palette. Solve silhouette and contact before roof texture or signs."
+  ]
+}

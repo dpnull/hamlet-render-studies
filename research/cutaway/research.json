@@ -1,0 +1,119 @@
+{
+  "title": "Hamlet cutaway town: spatial render research",
+  "scope": "An original 3D open-room town study inspired only by the high-level readability of public Mega Mall Story imagery. It does not reproduce Kairosoft pixel art, assets, UI, names, floor plans, or layouts.",
+  "last_reviewed": "2026-10-08",
+  "references": [
+    {
+      "id": "kairo-park-mega-mall",
+      "title": "Mega Mall Story",
+      "creator": "Kairosoft",
+      "kind": "official developer page",
+      "url": "https://kairopark.jp/iphone/en/index_test5.html",
+      "observations": [
+        "Its public description frames the mall as a tall, player-arranged place; the general useful signal is stacked programme made easy to scan.",
+        "Translate that clarity into room silhouettes, open thresholds and circulation; do not carry over its pixels, shop set, interface or graphic treatment."
+      ]
+    },
+    {
+      "id": "oma-jussieu",
+      "title": "Jussieu — Two Libraries",
+      "creator": "OMA",
+      "kind": "architect project page",
+      "url": "https://www.oma.com/projects/jussieu-two-libraries",
+      "observations": [
+        "OMA describes connected floor planes as one continuous interior boulevard rather than isolated stacked levels.",
+        "For the town, a visible stair, shallow ramp or terrace is a route first and a room-divider second. It should explain why people can be seen in adjacent bays."
+      ]
+    },
+    {
+      "id": "mvrdv-parkpodium",
+      "title": "ParkPodium",
+      "creator": "MVRDV",
+      "kind": "architect project page",
+      "url": "https://mvrdv.com/projects/783/parkpodium",
+      "observations": [
+        "The project uses a compact modular rack around a central social space, with multiple entries and programme visible on the active façade.",
+        "Use a repeated structural bay around one shared court or street, then let destinations vary by threshold, prop cluster and roof line."
+      ]
+    },
+    {
+      "id": "paperholm",
+      "title": "Paperholm",
+      "creator": "Charles Young",
+      "kind": "creator portfolio",
+      "url": "https://www.paperholm.com/work/paperholm",
+      "observations": [
+        "A large collection still feels like one place because its material, scale and proportional grammar remain consistent while small silhouettes vary.",
+        "Use thin roof edges, steps, rails, planters and openings as the detail budget; leave broad walls and roads calm."
+      ]
+    },
+    {
+      "id": "blender-camera",
+      "title": "Cameras — Orthographic",
+      "creator": "Blender Foundation",
+      "kind": "official documentation",
+      "url": "https://docs.blender.org/manual/en/4.5/render/cameras.html",
+      "observations": [
+        "Orthographic projection keeps objects the same apparent size with depth and keeps parallel lines parallel.",
+        "Use it for the default town overview so equivalent room bays stay comparable; reserve a gentle perspective close-up only for a selected destination."
+      ]
+    }
+  ],
+  "direction": {
+    "name": "Terraced open-room town",
+    "one_sentence": "A compact, orthographic small town whose rooms face a sheltered public street, stepping upward into planted terraces so everyday objects, routes and rest are legible at once.",
+    "reference_boundary": "Take only the general problem of clear stacked programme from Mega Mall Story. Build the town from an original bay grid, original material palette, original props, original character forms and quiet diegetic signs."
+  },
+  "palette": [
+    { "name": "chalk sky", "hex": "#E9E4D7", "role": "background and soft world fill" },
+    { "name": "limestone", "hex": "#D7CBB7", "role": "wall faces and broad paved terraces" },
+    { "name": "clay roof", "hex": "#B86E59", "role": "roof caps, planters and one civic cue" },
+    { "name": "ink blue", "hex": "#36576B", "role": "shadowed interiors, route edge and small metal details" },
+    { "name": "moss", "hex": "#758C70", "role": "trees, planted terraces and garden thresholds" },
+    { "name": "apricot plaster", "hex": "#D89D78", "role": "one warm room or shopfront field" },
+    { "name": "glass mist", "hex": "#9ABEC0", "role": "window depth and greenhouse planes" },
+    { "name": "lamp", "hex": "#E8C46B", "role": "small active / welcoming signal only" },
+    { "name": "charcoal", "hex": "#303B3E", "role": "frames, glyphs and deepest recesses" }
+  ],
+  "camera": {
+    "default": "Orthographic three-quarter view, 38–45° yaw and 28–34° downward pitch. Frame the first open street two thirds wide and leave an outer ground margin so the cutaway reads as a place, not a cropped interface.",
+    "depth": "Keep room fronts in one open facade plane. Put rear partitions only 0.35–0.6 room-depth behind it; enough to reveal thickness and shadow without turning the scene into a deep dollhouse.",
+    "occlusion_rule": "Never let a foreground roof, tree or sign hide an entrance, stair landing or room’s primary action. Tall silhouettes belong in the upper/back third of the composition.",
+    "secondary_shot": "For a selected room, shift the camera by one bay and lower it slightly rather than zooming through the facade. Keep the shared street and at least one neighbouring threshold visible as context."
+  },
+  "construction_rules": [
+    "Set a 1 m logical grid. Standard interior bay: 3 m wide × 4 m deep × 3.2 m clear high. Use 6 m civic bays only for the library, studio or shared kitchen.",
+    "Build a bay as separate editable pieces: ground slab, rear wall, side wall, ceiling/roof cap, opening frame, threshold, route edge and prop group. An open front is an intentional missing wall, never a transparent texture.",
+    "Place open rooms on alternating floors or at a shared street/court. Keep at least one closed façade between exposed rooms when the elevation gets dense; the rhythm makes cutaways legible and protects visual quiet.",
+    "Give every room one primary verb and three major objects maximum: write at desk; receive letters at counter; make at workbench; read at shelf; eat at table; grow at planter. Small loose props only reinforce that verb.",
+    "Arrange furniture against the rear or side wall first. Leave a 0.9–1.2 m clear path from the entrance to the main object, and angle one chair, stool or parcel toward the opening to make the room feel occupied rather than displayed.",
+    "Treat circulation as public furniture: 2 m shared street, 1.2 m gallery/terrace, 1.1 m stair flight, 1.5 m landing. A bench, rail, planter or lamp should sit at a pause point, never in the walking line.",
+    "Create height with three terraces, not a tower: street level, half-level planted porch, one-storey room step. A stair must resolve at a visible landing, and a retaining edge becomes a seat or planter only where it does not narrow the route.",
+    "Use simple scale witnesses: adult figures around 1.65 m high, door heads at 2.1 m, table tops about 0.75 m, and a small utility vehicle near 4.2 m long. Two figures per visible floor is enough for activity.",
+    "Keep materials matte and geometric: plaster/paint rough, timber and stone subtle, glass tinted with a dark frame. Add bevels only to roof slabs, stair noses, curb edges, frames and vehicle corners where light needs an edge.",
+    "Spend the lamp colour on one door, counter lamp, window or crossing beacon per view. All labels are optional physical plaques or projecting blades, 1–3 words maximum, at entrance height, never billboard-like floating UI.",
+    "Let road life stay low and lateral: a bicycle, small van, handcart, seated neighbour, planter and one tree family. These establish duration and scale; they must not block open fronts or become a parade.",
+    "Test at 100%, 60% and a 390 px viewport. If a room loses its verb, first improve opening contrast, furniture separation or route thickness before adding text or saturation."
+  ],
+  "room_kit": [
+    { "room": "mail nook", "primary_verb": "receive", "major_objects": ["counter", "parcel shelf", "mail slots"], "threshold": "red clay bench and tiny blade sign" },
+    { "room": "reading room", "primary_verb": "read", "major_objects": ["low shelf wall", "table", "window seat"], "threshold": "deep reveal and borrowed light" },
+    { "room": "studio", "primary_verb": "make", "major_objects": ["workbench", "pin board", "high window"], "threshold": "wide sliding opening" },
+    { "room": "tea counter", "primary_verb": "meet", "major_objects": ["counter", "two stools", "back bar"], "threshold": "awning and one lamp" },
+    { "room": "garden room", "primary_verb": "grow", "major_objects": ["potting bench", "planter table", "water butt"], "threshold": "glass frame with planted edge" }
+  ],
+  "first_scene_recipe": [
+    "Lay out five 3 m bays along a 2 m shared street; raise the studio and reading room by one half-level around a small planted landing.",
+    "Open the mail nook, reading room and studio toward the street. Keep the tea counter partly screened by a low wall and place the greenhouse at the terrace edge.",
+    "Add one visible stair, two people, one bicycle, one small delivery vehicle, four trees, three planters and two benches.",
+    "Render a pale daytime version first. Validate room verbs and route continuity in greyscale, then add the restrained palette and exactly three lamp-colour accents."
+  ],
+  "failure_checks": [
+    "If every room is open, the scene becomes a catalogue. Close, recess or screen some rooms to create a calm exposure rhythm.",
+    "If the street only separates buildings, it is too empty. Give it a stair, seat, tree, delivery pause or narrow terrace without obstructing through-movement.",
+    "If a label is needed to distinguish a room, change its threshold, prop silhouette or light before adding more words.",
+    "If roof planes dominate the open rooms, lower pitch, reduce overhang or shift the camera before shrinking people or furniture.",
+    "If planting looks scattered, group it at stair landings, terrace corners and rain-catching edges; leave the route itself clear.",
+    "Do not imitate Kairosoft pixels, menus, fonts, object arrangements, names, map geometry or shop progression."
+  ]
+}
