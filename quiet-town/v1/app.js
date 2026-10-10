@@ -1,4 +1,6 @@
 import {makeTown,THREE} from './world.js';
+/*! canvas-confetti v1.9.4 | ISC License | (c) 2020 Kiril Vatev — vendored from the bird game */
+import confetti from './vendor/confetti/confetti.module.mjs';
 const app=document.getElementById('app'),scene=document.getElementById('scene');
 const texts={zh:{edition:'小镇新作 · 设计提案',day:'日光',dusk:'暮色',weather:'午后 · 有一点风',nightWeather:'傍晚 · 窗里亮起了灯',title:'日子，在这里慢慢长大。',nightTitle:'灯亮着，慢慢回来就好。',caption:'有信等你，也有一会儿发呆的时间。',nightCaption:'把今天放下来，留一点时间给自己。',hint:'点一栋小房子，走近看看',town:'小镇',things:'小事',mail:'来信',study:'可交互的视觉提案',references:'灵感来源 ↗',enter:'走进去看看',leave:'回到门口',inside:'屋里也有一点日常',capture:'留下一点什么',captureLead:'想到的、做过的，或者想留给明天的。',placeholder:'此刻想到的小事……',save:'放进小镇',saved:'已经放进小镇了',emptyInput:'先写下一点什么',savedLabel:'保存在这台浏览器',storageError:'浏览器无法保存，请先复制这段文字',thingsTitle:'留在这里的小事',thingsLead:'想回头看时，它们就在这里。',empty:'这里还空着。想到什么，就随手留下一点。',add:'记一件小事',localNote:'这些记录只保存在当前浏览器。此处是设计演示，还未连接原生应用或云同步。',mailTitle:'今天的小小来信',mailOverline:'午后邮局 / 一封演示来信',mailBody:'窗边的光又挪了一点。书翻到了新的一页，桌上的杯子还温着。<br><br>今天留下的那些小事，都有了自己的位置。剩下的，明天再慢慢来。',mailSign:'你的小镇',mailDemo:'这封信是预写的演示内容。正式的来信如何回应真实记录，仍需另行设计。',mailAction:'也留下一件小事',aboutTitle:'一条安静的小街',aboutLead:'几栋房子，一只小豆，几件正在发生的小事。',aboutBody:'屋顶有自己的轮廓，颜色只在小地方发亮。界面轻轻浮在上面，让小镇有足够的呼吸空间。',aboutBoundary:'这是用可编辑几何搭建的浏览器视觉提案。半透明控件用于表达 Liquid Glass 的层次关系，并非原生 Apple 控件；iPhone 性能、自由摆放与真实数据功能仍未实现。Scarlet 决定最终美术方向。',exportImage:'保存小镇画面',aboutRefs:'看看灵感板',apple:'Apple 设计参考',pause:'暂停小镇的动态',play:'继续小镇的动态',zoomIn:'放大',zoomOut:'缩小',reset:'回到整座小镇',close:'关闭',labelHome:'我的小屋',labelPost:'邮局',labelLibrary:'书屋',arrive:'邮车慢慢经过，小镇照常过日子。'},en:{edition:'A new town study',day:'Daylight',dusk:'Dusk',weather:'AFTERNOON · A LITTLE BREEZE',nightWeather:'EVENING · THE WINDOWS ARE WARM',title:'A little place for your days.',nightTitle:'There’s a light on for you.',caption:'A letter waiting. A moment with nothing to do.',nightCaption:'Put today down. Keep a little time for yourself.',hint:'Choose a small building. Take a closer look.',town:'Town',things:'Things',mail:'Letters',study:'Interactive visual proposal',references:'The mood board ↗',enter:'Take a look inside',leave:'Back to the doorstep',inside:'There’s a little life inside, too.',capture:'Leave a little something',captureLead:'A thought, a thing you did, or something for tomorrow.',placeholder:'Something on your mind…',save:'Keep it here',saved:'A little thing, kept safely here',emptyInput:'Write a little something first',savedLabel:'Saved in this browser',storageError:'Browser storage is unavailable. Please copy your words first.',thingsTitle:'The little things you kept',thingsLead:'They’re here whenever you want to look back.',empty:'A little space for whatever comes to mind.',add:'Keep a little thing',localNote:'These records stay in this browser. This design study is not connected to a native app or cloud sync.',mailTitle:'A small afternoon letter',mailOverline:'THE POST OFFICE / A SAMPLE LETTER',mailBody:'The light has moved a little across the window. A book has found a new page. The cup on the desk is still warm.<br><br>The small things you kept today have a place of their own. The rest can wait for another day.',mailSign:'Your little town',mailDemo:'This is a prewritten sample. How real letters respond to your records still needs to be designed.',mailAction:'Keep a little thing, too',aboutTitle:'A quiet little street',aboutLead:'A few buildings. One bean. A little life happening.',aboutBody:'Distinct roofs, soft materials, and colour in small places. The interface floats lightly above it, leaving the town room to breathe.',aboutBoundary:'An editable geometry study in a browser. Translucent controls suggest the Liquid Glass hierarchy; they are not native Apple controls. iPhone performance, free placement and real data features remain unbuilt. Scarlet chooses the final art direction.',exportImage:'Save the town image',aboutRefs:'Explore the mood board',apple:'Apple design reference',pause:'Pause ambient movement',play:'Resume ambient movement',zoomIn:'Zoom in',zoomOut:'Zoom out',reset:'Return to the whole town',close:'Close',labelHome:'Your little home',labelPost:'Post office',labelLibrary:'Reading room',arrive:'The post van passes. The town goes about its day.'}};
 const buildings={home:{zh:['留一点时间给自己','我的小屋','桌上放着写到一半的笔记。窗边的位置，一直给你留着。','笔记、信件，还有发呆的位置','记一件小事'],en:['A LITTLE ROOM OF YOUR OWN','Your little home','An unfinished notebook on the desk. Your place by the window is still here.','A notebook, a letter tray, room to daydream.','Keep a little thought']},post:{zh:['一些话，值得留下','午后邮局','今天的信已经到了。也许只是很小的一件事，也有专门的地方装下它。','一封午后来信，正在等你','打开今天的信'],en:['SOME WORDS WORTH KEEPING','The afternoon post','A letter has arrived. Even a very small thing deserves somewhere of its own.','A small afternoon letter is waiting.','Open the letter']},library:{zh:['读到哪里，都算一页','窗边书屋','上次读到的那一页，还夹着书签。小豆可以陪你再坐一会儿。','书架、笔记，以及一张安静的桌子','看看留下的笔记'],en:['A PAGE IS STILL A PAGE','The reading room','Your bookmark is still where you left it. The bean can sit with you a little longer.','Books, notes, and one quiet desk.','Look through your notes']}};
@@ -226,22 +228,34 @@ function noteList(kind){
 }
 
 // ── The editor: the right-hand page ──
-function fillEditor(){
+function fillEditor(arriving=false){
   $('editor-where').textContent=buildings[current.kind][lang][1];
+  const card=current.kind==='post';
+  editor.classList.toggle('as-postcard',card);
+  $('editor-done').setAttribute('aria-label',t(card?'send':'close'));
+  if(card){fillDesk(arriving&&world.getState().motion);return;}
+  if(desk.innerHTML){desk.innerHTML='';world.setThumbs([],'desk');}
   $('editor-date').textContent=longWhen(current.updated);
   $('editor-title').value=current.title;$('editor-title').placeholder=t('titlePh');
   $('editor-body').value=current.body;$('editor-body').placeholder=t('bodyPh')[current.kind];
 }
 function openNote(note,focus='body'){
   if(current&&current!==note)releaseNote();
-  current=note;fillEditor();
+  // A letter is all message: an older one with a title keeps it as its first line.
+  if(note.kind==='post'&&note.title){note.body=note.title+(note.body?'\n'+note.body:'');note.title='';saveSoon();}
+  current=note;fillEditor(focus==='title');
   clearTimeout(editorTimer);
   if(editor.hidden){editor.hidden=false;editor.getBoundingClientRect();}
   editor.classList.add('open');app.classList.add('editing');
   sheetBody.querySelectorAll('[data-note]').forEach(r=>r.classList.toggle('active',r.dataset.note===note.id));
-  const field=$(focus==='title'?'editor-title':'editor-body');
-  field.focus({preventScroll:true});
-  if(focus==='body')field.setSelectionRange(field.value.length,field.value.length);
+  const letter=note.kind==='post',field=letter?$('pc-text'):$(focus==='title'?'editor-title':'editor-body');
+  const place=()=>{
+    if(current!==note)return;
+    field.focus({preventScroll:true});
+    if(letter||focus==='body')field.setSelectionRange(field.value.length,field.value.length);
+  };
+  // A new postcard arrives and turns over first; the pen waits for it.
+  if(letter&&focus==='title'&&world.getState().motion)setTimeout(place,1000);else place();
 }
 // Leaving a note: an untouched empty one is dropped, like Notes does.
 function releaseNote(){
@@ -253,7 +267,7 @@ function closeNote(){
   const focusInside=editor.contains(document.activeElement);
   releaseNote();saveNotes();
   editor.classList.remove('open');app.classList.remove('editing');
-  editorTimer=setTimeout(()=>{if(!current)editor.hidden=true;},360);
+  editorTimer=setTimeout(()=>{if(!current){editor.hidden=true;editor.classList.remove('as-postcard');desk.innerHTML='';world.setThumbs([],'desk');}},360);
   if(isPlace(sheetMode))renderSheet(sheetMode);
   if(focusInside)sheet.focus({preventScroll:true});
 }
@@ -280,7 +294,15 @@ function editNote(change){
 $('editor-title').addEventListener('input',e=>editNote({title:e.target.value}));
 $('editor-body').addEventListener('input',e=>editNote({body:e.target.value}));
 $('editor-title').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=$('editor-body');b.focus();b.setSelectionRange(0,0);}});
-$('editor-done').onclick=()=>closeNote();
+// ✓ on a written postcard posts it: it flies off towards the list first.
+$('editor-done').onclick=()=>{
+  const card=desk.querySelector('.pc-card');
+  if(card?.classList.contains('sending'))return;
+  if(current?.kind==='post'&&current.body.trim()&&card&&world.getState().motion){
+    card.classList.add('sending');
+    setTimeout(()=>{closeNote();toast(t('sent'));},640);
+  }else closeNote();
+};
 $('editor-back').onclick=()=>closeNote();
 $('editor-delete').onclick=()=>{
   if(!current)return;
@@ -290,8 +312,8 @@ $('editor-delete').onclick=()=>{
 
 // ── The postcard: picture on the front, message and stamp on the back ──
 const stampArt=`<svg viewBox="0 0 40 46" aria-hidden="true"><rect width="40" height="46" fill="#a3c693"/><circle cx="20" cy="23" r="13.2" fill="#efcf9b" stroke="#e2b778" stroke-width="2.6" stroke-dasharray="2.1 1.5"/><circle cx="20" cy="23" r="9.6" fill="#f6e0b6"/><path d="M20 29.6c-4.6-3-7.1-5.6-7.1-8.4a3.6 3.6 0 0 1 7.1-1.1 3.6 3.6 0 0 1 7.1 1.1c0 2.8-2.5 5.4-7.1 8.4Z" fill="#d8434d"/><path d="M15.5 20.4a1.9 1.9 0 0 1 2.5-1.1" fill="none" stroke="#fff" stroke-width="1.1" stroke-linecap="round" opacity=".85"/></svg>`;
+const postmark=d=>`<svg class="postmark" viewBox="0 0 132 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="32" cy="32" r="26"/><circle cx="32" cy="32" r="20"/><path d="M64 20q8-5 16 0t16 0 16 0 16 0M64 32q8-5 16 0t16 0 16 0 16 0M64 44q8-5 16 0t16 0 16 0 16 0"/></g><text x="32" y="30.5" text-anchor="middle" font-size="7" letter-spacing="1.2" fill="currentColor">HAMLET</text><text x="32" y="39.5" text-anchor="middle" font-size="4.9" letter-spacing=".2" fill="currentColor">${d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase()}</text></svg>`;
 function postcard(){
-  const stampDate=new Date().toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
   return`<div class="postcard" role="button" tabindex="0" aria-pressed="false">
     <div class="postcard-inner">
       <div class="postcard-face postcard-front"><div class="postcard-photo">
@@ -303,7 +325,7 @@ function postcard(){
         <div class="postcard-message"><p>${t('mailBody').replace(/<br><br>/g,' ')}</p><p class="postcard-sign">— ${t('mailSign')}</p></div>
         <div class="postcard-side">
           <div class="stamp"><div class="stamp-frame">${stampArt}</div></div>
-          <svg class="postmark" viewBox="0 0 132 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="32" cy="32" r="26"/><circle cx="32" cy="32" r="20"/><path d="M64 20q8-5 16 0t16 0 16 0 16 0M64 32q8-5 16 0t16 0 16 0 16 0M64 44q8-5 16 0t16 0 16 0 16 0"/></g><text x="32" y="30.5" text-anchor="middle" font-size="7" letter-spacing="1.2" fill="currentColor">HAMLET</text><text x="32" y="40" text-anchor="middle" font-size="5.6" letter-spacing=".4" fill="currentColor">${stampDate}</text></svg>
+          ${postmark(new Date())}
           <div class="postcard-lines"><span>${t('postTo')}</span><span></span><span></span></div>
         </div>
       </div>
@@ -311,6 +333,24 @@ function postcard(){
   </div>
   <p class="flip-hint">${t('flipHint')}</p>`;
 }
+// ── Letters to tomorrow are written on a postcard ──
+// "写一张给明天" brings one up on the right: it arrives picture side up, turns over, and you write on the back,
+// on ruled lines, in a handwriting face. ✓ posts it. An empty one is dropped, like any note.
+Object.assign(texts.zh,{pcTo:'致 明天的我',pcAddr:'小镇 · 你的小屋',pcFrom:'— 今天的我',pcLabel:'写在明信片背面',send:'寄出',sent:'寄出去了，明天见'});
+Object.assign(texts.en,{pcTo:'To: tomorrow’s me',pcAddr:'Your little home, Hamlet',pcFrom:'— me, today',pcLabel:'The back of the postcard',send:'Post it',sent:'Posted. See you tomorrow.'});
+const desk=$('pc-desk');
+function fillDesk(arriving){
+  desk.innerHTML=`<div class="pc-card${arriving?' arriving':' turned'}"><div class="pc-inner">
+    <div class="pc-face pc-front"><div class="postcard-photo"><span class="postcard-stars"></span><canvas aria-hidden="true"></canvas><p class="postcard-greet"><small>${t('greetSmall')}</small><em>Hamlet</em>${t('greet')?`<span>${t('greet')}</span>`:''}</p></div></div>
+    <div class="pc-face pc-back">
+      <div class="pc-top"><div class="pc-address"><span>${t('pcTo')}</span><span>${t('pcAddr')}</span><span></span></div><div class="stamp"><div class="stamp-frame">${stampArt}</div></div>${postmark(new Date(current.date))}</div>
+      <textarea id="pc-text" class="pc-text" aria-label="${t('pcLabel')}" placeholder="${t('bodyPh').post}">${esc(current.body)}</textarea>
+      <p class="pc-sign">${t('pcFrom')}</p>
+    </div></div></div>`;
+  world.setThumbs([{canvas:desk.querySelector('canvas'),id:'post',fill:1,interior:false,still:true}],'desk');
+  if(arriving)setTimeout(()=>desk.querySelector('.pc-card')?.classList.add('turned'),560);
+}
+desk.addEventListener('input',e=>{if(e.target.id==='pc-text')editNote({body:e.target.value});});
 function flipPostcard(card){
   const flipped=card.classList.toggle('flipped');
   card.setAttribute('aria-pressed',String(flipped));
@@ -456,7 +496,7 @@ Object.assign(texts.zh,{
   newTask:'新建待办',taskPh:'写下要做的事……',
   effortPh:'需要多少力气',efforts:['轻松','适中','费劲'],
   duePh:'哪天做',dueQuick:['今天','明天','本周末','下周'],pickDate:'选日期…',clearDate:'清除日期',tomorrow:'明天',yesterday:'昨天',
-  prioPh:'有多要紧',prios:['不要紧','有点要紧','挺要紧','很要紧'],
+  prioPh:'有多要紧',prios:['不要紧','有点要紧','挺要紧','很要紧'],effortNone:'说不好',setEffort:'估一下力气',
   taskHint:'<kbd>Tab</kbd> 切换到下一项<i></i><kbd>Enter</kbd> 确认',
   addDate:'添加日期',setPrio:'设置优先级',deleteTask:'删除待办',
   showDone:n=>`显示 ${n} 个已完成`,hideDone:'收起已完成',clearDone:'清除已完成',
@@ -468,7 +508,7 @@ Object.assign(texts.en,{
   newTask:'New task',taskPh:'Type a name…',
   effortPh:'Add effort',efforts:['Light','Medium','Heavy'],
   duePh:'Add date',dueQuick:['Today','Tomorrow','This weekend','Next week'],pickDate:'Pick a date…',clearDate:'Clear date',tomorrow:'Tomorrow',yesterday:'Yesterday',
-  prioPh:'Add priority',prios:['None','Low','Medium','High'],
+  prioPh:'Add priority',prios:['None','Low','Medium','High'],effortNone:'Not sure',setEffort:'Set effort',
   taskHint:'<kbd>Tab</kbd> next field<i></i><kbd>Enter</kbd> add the task',
   addDate:'Add a date',setPrio:'Set priority',deleteTask:'Delete task',
   showDone:n=>`Show ${n} completed`,hideDone:'Hide completed',clearDone:'Clear completed',
@@ -553,8 +593,9 @@ function taskRow(x){
     (n!==null&&n<=0&&!checked?`<span class="task-star" title="${t('today')}">${icons.star}</span>`:'')+
     (x.priority&&!checked?`<button class="prio" data-pick="prio" aria-label="${esc(t('prioPh')+' · '+t('prios')[x.priority])}">${'!'.repeat(x.priority)}</button>`:'')+
     `<button class="task-title" data-open-task>${esc(title)}</button>`+
-    (x.effort?`<span class="effort" title="${t('efforts')[x.effort-1]}">${battery(x.effort)}</span>`:'')+
+    (x.effort?`<button class="effort" data-pick="effort" aria-label="${esc(t('effortPh')+' · '+t('efforts')[x.effort-1])}">${battery(x.effort)}</button>`:'')+
     `<span class="task-end">`+
+      (!x.effort&&!checked?`<button class="task-act" data-pick="effort" aria-label="${t('setEffort')}">${icons.bolt}</button>`:'')+
       (!x.priority&&!checked?`<button class="task-act" data-pick="prio" aria-label="${t('setPrio')}">${icons.bang}</button>`:'')+
       (!label&&!checked?`<button class="task-act" data-pick="due" aria-label="${t('addDate')}">${icons.calendar}</button>`:'')+
       (label?`<button class="due${n<0?' late':''}" data-pick="due" aria-label="${esc(longDay(x.due))}">${label}</button>`:'')+
@@ -584,7 +625,7 @@ function taskCard(x){
     (isNew?'':`<button class="tc-del" data-del aria-label="${t('deleteTask')}">${icons.trash}</button>`)+`</div>`+
     field('effort',v.effort?battery(v.effort):icons.bolt,t('effortPh'),v.effort?t('efforts')[v.effort-1]:'',[1,2,3].map(n=>chip('effort',n,battery(n)+t('efforts')[n-1],v.effort===n)).join(''))+
     field('due',icons.calendar,t('duePh'),v.due?esc(dueText(v.due)):'',t('dueQuick').map((l,i)=>chip('due',i,(i===0?icons.star:'')+l,qi===i)).join('')+chip('due','pick',custom?esc(dueText(v.due)):t('pickDate'),custom,' aria-haspopup="dialog"'))+
-    (isNew?'':field('prio',v.priority?`<b class="prio-mark">${'!'.repeat(v.priority)}</b>`:icons.bang,t('prioPh'),v.priority?t('prios')[v.priority]:'',[1,2,3].map(n=>chip('prio',n,`<b>${'!'.repeat(n)}</b>${t('prios')[n]}`,v.priority===n)).join('')))+
+    (field('prio',v.priority?`<b class="prio-mark">${'!'.repeat(v.priority)}</b>`:icons.bang,t('prioPh'),v.priority?t('prios')[v.priority]:'',[1,2,3].map(n=>chip('prio',n,`<b>${'!'.repeat(n)}</b>${t('prios')[n]}`,v.priority===n)).join('')))+
     (isNew?`<p class="tc-hint">${t('taskHint')}</p>`:'')+`</div>`;
 }
 const PROP={effort:'effort',due:'due',prio:'priority'};
@@ -631,7 +672,7 @@ function pickChip(chip,{toggle=true,stay=false}={}){
 function openNewCard(){
   if(editingTask)closeTaskCard();
   closePop();
-  taskDraft={title:'',effort:0,due:null};picking=null;
+  taskDraft={title:'',effort:0,due:null,priority:0};picking=null;
   const holder=$('task-new');if(!holder)return;
   holder.innerHTML=taskCard(null);
   const card=holder.firstElementChild;card.classList.add('entering');
@@ -649,12 +690,12 @@ function commitNew(closeAfter=false){
   if(!taskDraft)return;
   const title=taskDraft.title.trim();
   if(title){
-    const x={id:newId(),title,effort:taskDraft.effort||0,due:taskDraft.due||null,priority:0,done:null,created:nowIso()};
+    const x={id:newId(),title,effort:taskDraft.effort||0,due:taskDraft.due||null,priority:taskDraft.priority||0,done:null,created:nowIso()};
     tasks.push(x);saveTasks();selectedTask=x.id;renderTaskList();
     sheetBody.querySelector(`[data-task="${x.id}"]`)?.classList.add('fresh');
   }
   if(!title||closeAfter){closeNewCard();return;}
-  taskDraft={title:'',effort:0,due:null};picking=null;
+  taskDraft={title:'',effort:0,due:null,priority:0};picking=null;
   refreshCard('.tc-name');
 }
 function openTaskCard(id){
@@ -685,7 +726,17 @@ function deleteTask(id){
   if(editingTask===id){editingTask=null;picking=null;}
   closePop();renderTaskList();toast(t('deleted'));
 }
-// Ticking: the box fills and the tick draws; a moment later the task slides into the completed list.
+// Ticking: the box squashes and pops blue, a ripple runs out, the tick and a line through the words draw in,
+// and the bird game's confetti goes up from the box. A moment later the task slides into the completed list.
+const fireConfetti=confetti.create($('confetti-fx'),{resize:true,useWorker:false});
+// The bird game's promotion burst (two staggered waves), in a smaller dose for a checkbox. Tuned by eye at size.
+const TICK_CONFETTI={particleCount:55,spread:70,startVelocity:26,gravity:1,scalar:.8,ticks:150,bursts:2,burstDelayMs:180,colors:['#4a8af4','#f5c443','#ef8f7a','#8fbf8a','#ffffff']};
+function celebrateAt(el){
+  if(!world.getState().motion)return;
+  const r=el.getBoundingClientRect(),c=$('confetti-fx').getBoundingClientRect(),C=TICK_CONFETTI;
+  const origin={x:(r.left+r.width/2-c.left)/c.width,y:(r.top+r.height/2-c.top)/c.height};
+  for(let i=0;i<C.bursts;i++)setTimeout(()=>fireConfetti({particleCount:C.particleCount,spread:C.spread,startVelocity:C.startVelocity,gravity:C.gravity,scalar:C.scalar,ticks:C.ticks,colors:C.colors,origin,angle:i?100:80,disableForReducedMotion:true}),i*C.burstDelayMs);
+}
 function toggleDone(id){
   const x=findTask(id);if(!x)return;
   if(editingTask===id){editingTask=null;picking=null;closePop();renderTaskList();}
@@ -693,23 +744,26 @@ function toggleDone(id){
   const li=sheetBody.querySelector(`[data-task="${id}"]`);
   if(!x.done){lingering.delete(id);renderTaskList();return;}
   lingering.add(id);
-  if(li){li.classList.add('checked');li.querySelector('.check')?.setAttribute('aria-checked','true');}
-  else renderTaskList();
+  if(li){
+    li.getBoundingClientRect();
+    li.classList.add('checked','ticking');li.querySelector('.check')?.setAttribute('aria-checked','true');
+    celebrateAt(li.querySelector('.check'));
+  }else renderTaskList();
   setTimeout(()=>{
     if(!x.done||!lingering.has(id))return;
     lingering.delete(id);
     const row=sheetBody.querySelector(`[data-task="${id}"]`);
-    if(row&&world.getState().motion){row.classList.add('leaving');setTimeout(renderTaskList,300);}
+    if(row&&world.getState().motion){row.classList.add('leaving');setTimeout(()=>{renderTaskList();sheetBody.querySelector('.done-toggle')?.classList.add('bump');},320);}
     else renderTaskList();
-  },950);
+  },1150);
 }
 
 // ── Popovers: the date (quick picks and a month, today is a star like Things) and the priority ──
 function openPop(kind,target,anchor){
   closePop();
   const el=document.createElement('div');
-  el.className=`glass task-pop ${kind}`;el.setAttribute('role',kind==='due'?'dialog':'menu');
-  el.setAttribute('aria-label',t(kind==='due'?'duePh':'prioPh'));
+  el.className=`glass task-pop ${kind}${kind==='due'?'':' menu'}`;el.setAttribute('role',kind==='due'?'dialog':'menu');
+  el.setAttribute('aria-label',t({due:'duePh',prio:'prioPh',effort:'effortPh'}[kind]));
   pop={el,kind,target,anchor};
   if(kind==='due'){const cur=valueOf(target,'due'),d=cur&&cur>=todayKey()?fromKey(cur):new Date();calMonth=new Date(d.getFullYear(),d.getMonth(),1);}
   fillPop();sheet.append(el);placePop();
@@ -721,6 +775,10 @@ function fillPop(){
   const{el,kind,target}=pop,prop=PROP[kind],cur=valueOf(target,prop);
   if(kind==='prio'){
     el.innerHTML=[3,2,1,0].map(n=>`<button role="menuitemradio" aria-checked="${(cur||0)===n}" data-set-prio="${n}"><b>${'!'.repeat(n)}</b><span>${t('prios')[n]}</span>${(cur||0)===n?icons.tick:''}</button>`).join('');
+    return;
+  }
+  if(kind==='effort'){
+    el.innerHTML=[3,2,1,0].map(n=>`<button role="menuitemradio" aria-checked="${(cur||0)===n}" data-set-effort="${n}"><i>${n?battery(n):''}</i><span>${n?t('efforts')[n-1]:t('effortNone')}</span>${(cur||0)===n?icons.tick:''}</button>`).join('');
     return;
   }
   const y=calMonth.getFullYear(),m=calMonth.getMonth(),tk=todayKey(),first=(new Date(y,m,1).getDay()+6)%7,count=new Date(y,m+1,0).getDate();
@@ -763,13 +821,14 @@ function popChoose(prop,v){
   else if(usingKeys)sheetBody.querySelector(`[data-task="${target}"] [data-pick="${kind}"]`)?.focus({preventScroll:true});
 }
 function popClick(e){
-  const day=e.target.closest('[data-day]'),nav=e.target.closest('[data-cal]'),prio=e.target.closest('[data-set-prio]');
+  const day=e.target.closest('[data-day]'),nav=e.target.closest('[data-cal]'),prio=e.target.closest('[data-set-prio]'),effort=e.target.closest('[data-set-effort]');
   if(day&&!day.disabled)popChoose('due',day.dataset.day||null);
   else if(nav&&!nav.disabled){calMonth=new Date(calMonth.getFullYear(),calMonth.getMonth()+Number(nav.dataset.cal),1);fillPop();placePop();pop.el.querySelector(`[data-cal="${nav.dataset.cal}"]`)?.focus({preventScroll:true});}
   else if(prio)popChoose('priority',Number(prio.dataset.setPrio));
+  else if(effort)popChoose('effort',Number(effort.dataset.setEffort));
 }
 function popKeys(e){
-  if(pop.kind==='prio'&&(e.key==='ArrowDown'||e.key==='ArrowUp')){
+  if(pop.kind!=='due'&&(e.key==='ArrowDown'||e.key==='ArrowUp')){
     e.preventDefault();
     const items=[...pop.el.querySelectorAll('button')],i=items.indexOf(document.activeElement);
     items[(i+(e.key==='ArrowDown'?1:items.length-1))%items.length].focus();
