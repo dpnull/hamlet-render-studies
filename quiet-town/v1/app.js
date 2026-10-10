@@ -38,7 +38,7 @@ const newId=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
 const nowIso=()=>new Date().toISOString();
 let lang='zh',sheetMode=null,notes=[],current=null,toastTimer,night=true,sheetOpener=null,sheetTimer,menuTimer,editorTimer,saveTimer,soundOn=true;
 try{
-  lang=localStorage.getItem('hamlet-quiet-language')==='en'?'en':'zh';
+  lang=localStorage.getItem('hamlet-quiet-lang')==='en'?'en':'zh';
   soundOn=localStorage.getItem('hamlet-quiet-sound')!=='off';
   const v=JSON.parse(localStorage.getItem('hamlet-quiet-notes')||'[]');
   // Older saves were {text,date}; the first line becomes the title.
@@ -122,7 +122,7 @@ function setLanguage(v){
   updateIdentity(false);
   renderNews();if(noticeItem)openNotice(noticeItem);
   requestAnimationFrame(syncChrome);
-  try{localStorage.setItem('hamlet-quiet-language',lang);}catch{}
+  try{localStorage.setItem('hamlet-quiet-lang',lang);}catch{}
 }
 function updateSkyText(){
   $('weather').textContent=t(night?'nightWeather':'weather');
