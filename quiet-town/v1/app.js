@@ -294,14 +294,59 @@ function editNote(change){
 $('editor-title').addEventListener('input',e=>editNote({title:e.target.value}));
 $('editor-body').addEventListener('input',e=>editNote({body:e.target.value}));
 $('editor-title').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const b=$('editor-body');b.focus();b.setSelectionRange(0,0);}});
-// ✓ on a written postcard posts it: it flies off towards the list first.
+// ✓ on a written postcard posts it, in about two seconds: the card shrinks to a third, a mailbox on its wooden
+// post slides in from the right with a wobble and settles, drops its door, takes the card, shuts with the flag
+// up, throws the confetti, then shrinks away and pops like a bubble.
+const mailboxArt=`<div class="mb-inner"><svg class="mb-art" viewBox="0 0 200 260" aria-hidden="true">
+  <ellipse cx="113" cy="249" rx="42" ry="7" fill="rgba(20,30,24,.22)"/>
+  <path d="M95 249q3-11 6 0M100 249q4-14 7 0M121 249q3-10 6 0M126 249q4-13 7 0" stroke="#6f9a6a" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  <rect x="104" y="112" width="18" height="137" rx="3" fill="#b78b5e"/>
+  <path d="M109 132v38M116 152v48M110 208v28" stroke="#9a7148" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+  <rect x="74" y="113" width="80" height="11" rx="3" fill="#a87d52"/>
+  <path d="M49 46H160a18 18 0 0 1 18 18v52a4 4 0 0 1-4 4H49Z" fill="#8aa58c"/>
+  <path d="M49 46H160a18 18 0 0 1 17.2 13H49Z" fill="#a6bfa3"/>
+  <path d="M49 106H178" stroke="#78937a" stroke-width="1.5" fill="none"/>
+  <path class="mb-mouth" d="M28 120V67a21 21 0 0 1 42 0v53Z" fill="#2f3b35"/>
+</svg><div class="mb-flag"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="17" y="2" width="5" height="36" rx="2" fill="#5f6b65"/><path d="M22 3h15v12H22Z" fill="#e2574c"/></svg></div>
+<div class="mb-door"><svg viewBox="0 0 42 74" aria-hidden="true"><path d="M1 73V22a20 20 0 0 1 40 0v51Z" fill="#9db79c" stroke="#6f8c74" stroke-width="2"/><rect x="15" y="17" width="12" height="5" rx="2.5" fill="#6f8c74"/></svg></div></div>`;
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function postLetter(card){
+  const note=current,d=desk.getBoundingClientRect(),c=card.getBoundingClientRect(),s=isPhone()?.72:1;
+  card.classList.remove('arriving');card.classList.add('sending');
+  // Where the shrunk card will sit, and the mailbox beside it with its mouth level with the card.
+  const cx=c.left+c.width*.44,cy=c.top+c.height*.48,box=document.createElement('div');
+  box.className='mailbox';box.innerHTML=mailboxArt;box.style.scale=s;
+  box.style.left=(cx+c.width*.165+34*s-28*s-d.left)+'px';box.style.top=(cy-83*s-d.top)+'px';
+  desk.append(box);
+  const inner=box.querySelector('.mb-inner'),door=box.querySelector('.mb-door'),flag=box.querySelector('.mb-flag');
+  const base='translate(-6%,-2%) scale(.33) rotate(-4deg)';
+  card.animate([{transform:'none'},{transform:base}],{duration:360,easing:'cubic-bezier(.2,.9,.25,1)',fill:'forwards'});
+  await wait(80);
+  await inner.animate([{transform:`translateX(${(d.right-c.right+260)/s}px) rotate(-12deg)`},{transform:'translateX(-12px) rotate(9deg)',offset:.6},{transform:'translateX(4px) rotate(-5deg)',offset:.76},{transform:'translateX(-1px) rotate(2deg)',offset:.9},{transform:'none'}],{duration:600,easing:'cubic-bezier(.25,.8,.3,1)',fill:'both'}).finished;
+  await door.animate([{transform:'rotateX(0)'},{transform:'rotateX(-112deg)'}],{duration:180,easing:'cubic-bezier(.3,1.4,.6,1)',fill:'forwards'}).finished;
+  const now=card.getBoundingClientRect(),m=box.querySelector('.mb-mouth').getBoundingClientRect();
+  const dx=m.left+m.width/2-(now.left+now.width/2),dy=m.top+m.height*.62-(now.top+now.height/2);
+  await card.animate([{transform:base},{transform:`translate(${dx*.5}px,${dy-70}px) ${base}`,offset:.45},{transform:`translate(${dx}px,${dy}px) translate(-6%,-2%) scale(.07) rotate(10deg)`,opacity:1,offset:.9},{transform:`translate(${dx}px,${dy}px) translate(-6%,-2%) scale(.04) rotate(10deg)`,opacity:0}],{duration:360,easing:'cubic-bezier(.45,0,.55,1)',fill:'forwards'}).finished;
+  door.animate([{transform:'rotateX(-112deg)'},{transform:'rotateX(10deg)',offset:.72},{transform:'rotateX(0)'}],{duration:220,easing:'ease-out',fill:'forwards'});
+  flag.animate([{rotate:'90deg'},{rotate:'-14deg',offset:.7},{rotate:'0deg'}],{duration:380,easing:'cubic-bezier(.3,1.5,.5,1)',fill:'forwards'});
+  await wait(150);
+  celebrateAt(box.querySelector('.mb-mouth'));
+  await wait(200);
+  // Smaller and smaller until it's gone, then a bubble pops where it stood.
+  const r=box.querySelector('.mb-art').getBoundingClientRect(),pop=document.createElement('span');
+  pop.className='mb-pop';pop.innerHTML='<i></i>'.repeat(8);
+  pop.style.left=(r.left+r.width*.5-d.left)+'px';pop.style.top=(r.top+r.height*.32-d.top)+'px';
+  inner.style.transformOrigin='103px 83px';
+  await inner.animate([{transform:'none'},{transform:'scale(1.08)',offset:.3},{transform:'scale(0)'}],{duration:240,easing:'cubic-bezier(.5,0,.75,0)',fill:'forwards'}).finished;
+  desk.append(pop);
+  await wait(230);
+  if(current===note){closeNote();toast(t('sent'));}
+}
 $('editor-done').onclick=()=>{
   const card=desk.querySelector('.pc-card');
   if(card?.classList.contains('sending'))return;
-  if(current?.kind==='post'&&current.body.trim()&&card&&world.getState().motion){
-    card.classList.add('sending');
-    setTimeout(()=>{closeNote();toast(t('sent'));},640);
-  }else closeNote();
+  if(current?.kind==='post'&&current.body.trim()&&card&&world.getState().motion)postLetter(card);
+  else closeNote();
 };
 $('editor-back').onclick=()=>closeNote();
 $('editor-delete').onclick=()=>{

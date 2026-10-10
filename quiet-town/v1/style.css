@@ -549,8 +549,6 @@ kbd{display:inline-block;min-width:22px;padding:0 5px;border-radius:5px;backgrou
 .pc-sign{align-self:flex-end;margin:4px 6px 0;font:italic 15px Georgia,'Songti SC',serif;color:#56635a}
 .pc-card.arriving{animation:pcArrive .62s cubic-bezier(.2,.9,.25,1) both}
 @keyframes pcArrive{from{opacity:0;transform:translateY(46px) rotate(-7deg) scale(.88)}}
-.pc-card.sending{animation:pcSend .64s cubic-bezier(.55,0,.75,.2) forwards}
-@keyframes pcSend{20%{transform:translateY(-10px) rotate(1deg) scale(1.02)}100%{opacity:0;transform:translate(-44vw,14vh) rotate(-16deg) scale(.28)}}
 @media(max-width:650px){
   .editor.as-postcard .pc-desk{padding:8px 14px 24px;place-items:start center}
   .pc-card{width:min(100%,calc(100dvh - 150px))}
@@ -562,9 +560,23 @@ kbd{display:inline-block;min-width:22px;padding:0 5px;border-radius:5px;backgrou
   .pc-card .postmark{right:48px;top:26px;width:118px}
   .pc-text{font-size:18px;line-height:32px;background-size:100% 32px;background-image:repeating-linear-gradient(transparent 0 31px,rgba(90,100,80,.17) 31px 32px)}
   .pc-front .postcard-greet em{font-size:52px}
-  .pc-card.sending{animation-name:pcSendUp}
-  @keyframes pcSendUp{20%{transform:translateY(-10px) scale(1.02)}100%{opacity:0;transform:translate(0,60vh) rotate(-10deg) scale(.3)}}
 }
 /* no focus ring on the postcard you write on (the caret is enough); the postmark keeps its proportions */
 .pc-text,.pc-text:focus-visible{outline:none}
 .postmark{height:auto}
+
+/* the mailbox: a classic one on a wooden post, which takes the postcard and pops like a bubble */
+.editor.as-postcard .pc-desk{position:relative}
+.mailbox{position:absolute;z-index:2;width:200px;height:260px;transform-origin:0 0;pointer-events:none}
+.mb-inner{position:absolute;inset:0;transform-origin:113px 249px;perspective:280px;perspective-origin:49px 84px}
+.mb-art{position:absolute;inset:0;width:100%;height:100%;stroke:none;filter:drop-shadow(0 6px 10px rgba(10,16,12,.18))}
+.mb-door{position:absolute;left:28px;top:46px;width:42px;height:74px;transform-origin:50% 100%}
+.mb-door svg,.mb-flag svg{width:100%;height:100%;stroke:none}
+.mb-door svg path{stroke:#6f8c74}
+.mb-flag{position:absolute;left:131px;top:44px;width:40px;height:40px;transform-origin:19.5px 36px;rotate:90deg}
+.mb-pop{--ring:rgba(91,125,101,.75);position:absolute;z-index:3;width:96px;height:96px;margin:-48px 0 0 -48px;border-radius:50%;pointer-events:none;box-shadow:inset 0 0 0 3px var(--ring);animation:bubblePop .36s ease-out forwards}
+.dusk .mb-pop{--ring:rgba(255,255,255,.9)}
+.mb-pop i{position:absolute;left:50%;top:50%;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:var(--ring);animation:popDrop .36s ease-out forwards}
+.mb-pop i:nth-child(2){--a:45deg}.mb-pop i:nth-child(3){--a:90deg}.mb-pop i:nth-child(4){--a:135deg}.mb-pop i:nth-child(5){--a:180deg}.mb-pop i:nth-child(6){--a:225deg}.mb-pop i:nth-child(7){--a:270deg}.mb-pop i:nth-child(8){--a:315deg}
+@keyframes bubblePop{from{transform:scale(.2);opacity:1}to{transform:scale(1.35);opacity:0}}
+@keyframes popDrop{from{transform:rotate(var(--a,0deg)) translateY(-10px) scale(1)}to{transform:rotate(var(--a,0deg)) translateY(-64px) scale(.2);opacity:0}}
