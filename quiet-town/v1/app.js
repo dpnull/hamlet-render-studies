@@ -39,7 +39,7 @@ const nowIso=()=>new Date().toISOString();
 let lang='zh',sheetMode=null,notes=[],current=null,toastTimer,night=true,sheetOpener=null,sheetTimer,menuTimer,editorTimer,saveTimer,soundOn=true;
 try{
   lang=localStorage.getItem('hamlet-quiet-lang')==='en'?'en':'zh';
-  soundOn=localStorage.getItem('hamlet-quiet-sound')!=='off';
+  soundOn=localStorage.getItem('hamlet-quiet-audio')!=='off';
   const v=JSON.parse(localStorage.getItem('hamlet-quiet-notes')||'[]');
   // Older saves were {text,date}; the first line becomes the title.
   if(Array.isArray(v))notes=v.filter(n=>n&&typeof n.date==='string').map(n=>{
@@ -159,7 +159,7 @@ function updateSound(){
     else fadeTo(.6,900);
   }else if(!audio.paused)fadeTo(0,900,()=>audio.pause());
 }
-for(const type of['pointerdown','keydown'])document.addEventListener(type,()=>{if(soundBlocked){soundBlocked=false;updateSound();}},{capture:true});
+for(const type of['pointerdown','pointerup','touchend','click','keydown'])document.addEventListener(type,()=>{if(soundBlocked){soundBlocked=false;updateSound();}},{capture:true});
 
 // ── The top-left identity shows the open page's title ──
 const titles={
@@ -1039,7 +1039,7 @@ $('about').onclick=()=>toggleSheet('about');
 $('close-sheet').onclick=()=>closeSheet();
 $('day').onclick=()=>setDusk(false);
 $('dusk').onclick=()=>setDusk(true);
-$('sound').onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('hamlet-quiet-sound',soundOn?'on':'off');}catch{}updateSound();};
+$('sound').onclick=()=>{soundOn=!soundOn;try{localStorage.setItem('hamlet-quiet-audio',soundOn?'on':'off');}catch{}updateSound();};
 $('language').onclick=()=>setLanguage(lang==='zh'?'en':'zh');
 $('motion').onclick=()=>{world.setMotion(!world.getState().motion);updateMotionLabel();};
 $('zoom-in').onclick=()=>world.zoomBy(1.18);
