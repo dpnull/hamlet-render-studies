@@ -580,3 +580,12 @@ kbd{display:inline-block;min-width:22px;padding:0 5px;border-radius:5px;backgrou
 .mb-pop i:nth-child(2){--a:45deg}.mb-pop i:nth-child(3){--a:90deg}.mb-pop i:nth-child(4){--a:135deg}.mb-pop i:nth-child(5){--a:180deg}.mb-pop i:nth-child(6){--a:225deg}.mb-pop i:nth-child(7){--a:270deg}.mb-pop i:nth-child(8){--a:315deg}
 @keyframes bubblePop{from{transform:scale(.2);opacity:1}to{transform:scale(1.35);opacity:0}}
 @keyframes popDrop{from{transform:rotate(var(--a,0deg)) translateY(-10px) scale(1)}to{transform:rotate(var(--a,0deg)) translateY(-64px) scale(.2);opacity:0}}
+
+/* date · effort · priority: fixed columns on the right, the same x on every row */
+.task-end{gap:0;padding-left:8px}
+.task-end .col{flex:none;display:flex;align-items:center;justify-content:center}
+.col-effort{width:28px}
+.col-prio{width:30px}
+.task-end .col-due{width:66px;justify-content:flex-end;margin-right:2px}
+.task .effort{margin:0}
+.task .prio{min-width:24px;padding:3px 2px;text-align:center}

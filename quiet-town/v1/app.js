@@ -630,20 +630,21 @@ function byWhen(a,b){
 }
 
 // ── Rows ──
+// Date, effort and priority each keep a fixed column on the right, so they line up down the list. The date
+// column is the wide one, so it goes first: its spare room joins the title's instead of opening a gap. An empty
+// column holds its place and offers its button on hover.
 function taskRow(x){
   if(x.id===editingTask)return`<li class="task editing" data-task="${x.id}">${taskCard(x)}</li>`;
   const title=titleOf(x),checked=Boolean(x.done),n=x.due?daysFrom(x.due):null,label=x.due&&n!==0&&!checked?dueText(x.due):'';
+  const act=(pick,label,icon)=>checked?'':`<button class="task-act" data-pick="${pick}" aria-label="${label}">${icon}</button>`;
   return`<li class="task${checked?' checked':''}${x.id===selectedTask?' selected':''}" data-task="${x.id}">`+
     `<button class="check" role="checkbox" aria-checked="${checked}" aria-label="${esc(title)}">${icons.tick}</button>`+
     (n!==null&&n<=0&&!checked?`<span class="task-star" title="${t('today')}">${icons.star}</span>`:'')+
-    (x.priority&&!checked?`<button class="prio" data-pick="prio" aria-label="${esc(t('prioPh')+' · '+t('prios')[x.priority])}">${'!'.repeat(x.priority)}</button>`:'')+
     `<button class="task-title" data-open-task>${esc(title)}</button>`+
-    (x.effort?`<button class="effort" data-pick="effort" aria-label="${esc(t('effortPh')+' · '+t('efforts')[x.effort-1])}">${battery(x.effort)}</button>`:'')+
     `<span class="task-end">`+
-      (!x.effort&&!checked?`<button class="task-act" data-pick="effort" aria-label="${t('setEffort')}">${icons.bolt}</button>`:'')+
-      (!x.priority&&!checked?`<button class="task-act" data-pick="prio" aria-label="${t('setPrio')}">${icons.bang}</button>`:'')+
-      (!label&&!checked?`<button class="task-act" data-pick="due" aria-label="${t('addDate')}">${icons.calendar}</button>`:'')+
-      (label?`<button class="due${n<0?' late':''}" data-pick="due" aria-label="${esc(longDay(x.due))}">${label}</button>`:'')+
+      `<span class="col col-due">${label?`<button class="due${n<0?' late':''}" data-pick="due" aria-label="${esc(longDay(x.due))}">${label}</button>`:act('due',t('addDate'),icons.calendar)}</span>`+
+      `<span class="col col-effort">${x.effort?`<button class="effort" data-pick="effort" aria-label="${esc(t('effortPh')+' · '+t('efforts')[x.effort-1])}">${battery(x.effort)}</button>`:act('effort',t('setEffort'),icons.bolt)}</span>`+
+      `<span class="col col-prio">${x.priority?`<button class="prio" data-pick="prio" aria-label="${esc(t('prioPh')+' · '+t('prios')[x.priority])}">${'!'.repeat(x.priority)}</button>`:act('prio',t('setPrio'),icons.bang)}</span>`+
     `</span></li>`;
 }
 function taskListsHtml(){
